@@ -6,8 +6,9 @@ import i18n from "i18next";
 import { compose } from "recompose";
 import { Formik } from "formik";
 import { register } from "../../redux/actions";
-
 import RegisterPage from "../../components/RegisterPage";
+import API from "../../network/API";
+import { path, pathOr } from "ramda";
 
 class SignUpPageContainer extends Component {
   state = {};
@@ -21,15 +22,26 @@ class SignUpPageContainer extends Component {
     document.body.classList.remove("bg-default");
   }
 
-
-
   render() {
     const { t } = this.props;
     const { status, message } = this.state;
 
     return (
       <Formik
-        initialValues={{ email: "", password: "", confirmationPassword: "", gender: "male", address: "", nationality: "", firstName: "", lastName: "", identityNumber: "", identityCardPicture: "",  holdingIdentityCardPicture: "", proofOfAddressPicture: "" }}
+        initialValues={{
+          email: "",
+          password: "",
+          confirmationPassword: "",
+          gender: "male",
+          address: "",
+          nationality: "",
+          firstName: "",
+          lastName: "",
+          identityNumber: "",
+          identityCardPicture: "",
+          holdingIdentityCardPicture: "",
+          proofOfAddressPicture: ""
+        }}
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit
@@ -55,31 +67,65 @@ class SignUpPageContainer extends Component {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          this.setState({message: ""})
-
-          this.props.register(values, response => {
-            setSubmitting(false);
-
-            switch (response.status) {
-              case 201:
-                this.props.history.push({
-                  pathname: "/login",
-                  state: {
-                    status: "success",
-                    message: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
-                  }
-                });
-                break;
-              case 400:
-                this.setState({
-                  status: "danger",
-                  message: "Email is already existed"
-                });
-                break;
-              default:
-                break;
+          const body = {
+            email: values["email"],
+            password: values["password"],
+            personalInfo: {
+              firstName: values["firstName"],
+              lastName: values["lastName"],
+              address: values["address"],
+              identityNumber: values["identityNumber"],
+              identityType: "identity_card",
+              nationality: "Vietnam",
+              gender: values["gender"]
+            },
+            documents: {
+              identityPicture: values["identityCardPicture"],
+              identityPictureWithPersonPicture:
+                values["holdingIdentityCardPicture"],
+              proofOfAddressPicture: values["proofOfAddressPicture"]
             }
-          });
+          };
+
+          this.setState({ message: "" });
+
+          API.register(body)
+            .then(response => {
+              setSubmitting(false);
+
+              console.log("REGISTER", response);
+
+              switch (response.status) {
+                case 201:
+                  this.props.history.push({
+                    pathname: "/login",
+                    state: {
+                      status: "success",
+                      message:
+                        "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+                    }
+                  });
+                  break;
+                case 409:
+                  console.log("errors", response);
+                  const errors = pathOr([], ["response", "errors"], response);
+                  const emailExisted = errors.filter(
+                    error => error.field === "email"
+                  );
+                  if (emailExisted) {
+                    this.setState({
+                      status: "danger",
+                      message: "Email is already existed"
+                    });
+                  }
+                  break;
+                default:
+                  break;
+              }
+            })
+            .catch(error => {
+              console.log("Exception", error);
+            });
         }}
       >
         {formik => (

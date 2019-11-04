@@ -21,16 +21,115 @@ import {
   Media
 } from "reactstrap";
 import AuthHeader from "components/Headers/AuthHeader.jsx";
+import API from "../../network/API";
+import { path } from "ramda";
 
 import styles from "./index.module.css";
 
 class RegisterPage extends Component {
-  state = {};
+  state = {
+    identityCardFile: null,
+    holdingIdentityCardFile: null,
+    proofOfAddressFile: null
+  };
 
   onKeyDown = e => {
     const { submitForm } = this.props.formik;
     if (e.key === "Enter") {
       submitForm();
+    }
+  };
+
+  onIdentityCardFileChangeHandler = event => {
+    const { setFieldValue } = this.props.formik;
+
+    if (event.target.files[0]) {
+      const file = event.target.files[0];
+      const data = new FormData();
+      data.append("file", file);
+      data.append("name", file.name);
+      data.append("type", "image");
+
+      API.upload(data)
+        .then(response => {
+          console.log("response", response);
+          if (response.status === 200) {
+            const identityCardFile = path(["data", "data", "url"], response);
+            if (identityCardFile) {
+              this.setState({
+                identityCardFile
+              });
+              setFieldValue("identityCardPicture", identityCardFile);
+            }
+          }
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
+    }
+  };
+
+  onHoldingIdentityCardFileChangeHandler = event => {
+    const { setFieldValue } = this.props.formik;
+
+    if (event.target.files[0]) {
+      const file = event.target.files[0];
+      const data = new FormData();
+      data.append("file", file);
+      data.append("name", file.name);
+      data.append("type", "image");
+
+      API.upload(data)
+        .then(response => {
+          console.log("response", response);
+          if (response.status === 200) {
+            const holdingIdentityCardFile = path(
+              ["data", "data", "url"],
+              response
+            );
+            if (holdingIdentityCardFile) {
+              this.setState({
+                holdingIdentityCardFile
+              });
+              setFieldValue(
+                "holdingIdentityCardPicture",
+                holdingIdentityCardFile
+              );
+            }
+          }
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
+    }
+  };
+
+  onProofOfAddressFileChangeHandler = event => {
+    const { setFieldValue } = this.props.formik;
+
+    if (event.target.files[0]) {
+      const file = event.target.files[0];
+      const data = new FormData();
+      data.append("file", file);
+      data.append("name", file.name);
+      data.append("type", "image");
+
+      API.upload(data)
+        .then(response => {
+          console.log("response", response);
+          if (response.status === 200) {
+            const proofOfAddressFile = path(["data", "data", "url"], response);
+            if (proofOfAddressFile) {
+              this.setState({
+                proofOfAddressFile
+              });
+              setFieldValue("holdingIdentityCardPicture", proofOfAddressFile);
+            }
+          }
+        })
+        .catch(error => {
+          console.log("error", error);
+        });
     }
   };
 
@@ -393,9 +492,26 @@ class RegisterPage extends Component {
                         />
                       </Col>
                       <Col className={styles.uploadPlaceholder}>
-                        <i class="fa fa-upload" aria-hidden="true">
-                          Upload
-                        </i>
+                        {this.state.identityCardFile ? (
+                          <Media
+                            width="75%"
+                            object
+                            src={this.state.identityCardFile}
+                            alt="Generic placeholder image"
+                          />
+                        ) : (
+                          <>
+                            {" "}
+                            <i class="fa fa-upload" aria-hidden="true">
+                              Upload
+                            </i>
+                            <Input
+                              type="file"
+                              name="identityCardFile"
+                              onChange={this.onIdentityCardFileChangeHandler}
+                            ></Input>
+                          </>
+                        )}
                       </Col>
                       <Input
                         type="hidden"
@@ -422,9 +538,27 @@ class RegisterPage extends Component {
                         />
                       </Col>
                       <Col className={styles.uploadPlaceholder}>
-                        <i class="fa fa-upload" aria-hidden="true">
-                          Upload
-                        </i>
+                        {this.state.holdingIdentityCardFile ? (
+                          <Media
+                            width="75%"
+                            object
+                            src={this.state.holdingIdentityCardFile}
+                            alt="Generic placeholder image"
+                          />
+                        ) : (
+                          <>
+                            <i class="fa fa-upload" aria-hidden="true">
+                              Upload
+                            </i>
+                            <Input
+                              type="file"
+                              name="holdingIdentityCardFile"
+                              onChange={
+                                this.onHoldingIdentityCardFileChangeHandler
+                              }
+                            ></Input>
+                          </>
+                        )}
                       </Col>
                       <Input
                         type="hidden"
@@ -432,6 +566,8 @@ class RegisterPage extends Component {
                         value={values["holdingIdentityCardPicture"]}
                       ></Input>
                     </Row>
+
+                    <br />
 
                     <h4>Proof of Address</h4>
                     <label>
@@ -448,9 +584,25 @@ class RegisterPage extends Component {
                         />
                       </Col>
                       <Col className={styles.uploadPlaceholder}>
-                        <i class="fa fa-upload" aria-hidden="true">
-                          Upload
-                        </i>
+                        {this.state.proofOfAddressFile ? (
+                          <Media
+                            width="75%"
+                            object
+                            src={this.state.proofOfAddressFile}
+                            alt="Generic placeholder image"
+                          />
+                        ) : (
+                          <>
+                            <i class="fa fa-upload" aria-hidden="true">
+                              Upload
+                            </i>
+                            <Input
+                              type="file"
+                              name="proofOfAddressFile"
+                              onChange={this.onProofOfAddressFileChangeHandler}
+                            ></Input>
+                          </>
+                        )}
                       </Col>
                       <Input
                         type="hidden"
