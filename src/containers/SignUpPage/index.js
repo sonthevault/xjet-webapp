@@ -38,6 +38,7 @@ class SignUpPageContainer extends Component {
           firstName: "",
           lastName: "",
           identityNumber: "",
+          identityType: "id_card",
           identityCardPicture: "",
           holdingIdentityCardPicture: "",
           proofOfAddressPicture: ""
@@ -59,9 +60,46 @@ class SignUpPageContainer extends Component {
             errors.password = "Required";
           }
 
-          if (!values.toc) {
+          if (!values.confirmationPassword) {
+            errors.password = "Required";
+          }
+
+          if (values.password !== values.confirmationPassword) {
+            errors.confirmationPassword = "Password not matched";
+          }
+
+          if (!values.nationality) {
             errors.toc = "Required";
           }
+
+          if (!values.firstName) {
+            errors.firstName = "Required";
+          }
+
+          if (!values.lastName) {
+            errors.lastName = "Required";
+          }
+
+          if (!values.identityNumber) {
+            errors.identityNumber = "Required";
+          }
+
+          if (!values.identityCardPicture) {
+            errors.identityCardPicture = "Required";
+          }
+
+          if (!values.holdingIdentityCardPicture) {
+            errors.holdingIdentityCardPicture = "Required";
+          }
+
+          if (!values.proofOfAddressPicture) {
+            errors.proofOfAddressPicture = "Required";
+          }
+
+          // if (!values.toc) {
+          //   errors.toc = "Required";
+          // }
+
 
           console.log(errors);
           return errors;
@@ -75,8 +113,8 @@ class SignUpPageContainer extends Component {
               lastName: values["lastName"],
               address: values["address"],
               identityNumber: values["identityNumber"],
-              identityType: "identity_card",
-              nationality: "Vietnam",
+              identityType: values["identityType"],
+              nationality: values["nationality"],
               gender: values["gender"]
             },
             documents: {
