@@ -96,7 +96,6 @@ class SignUpPageContainer extends Component {
           //   errors.toc = "Required";
           // }
 
-
           console.log(errors);
           return errors;
         }}
@@ -130,14 +129,12 @@ class SignUpPageContainer extends Component {
 
               switch (response.status) {
                 case 201:
-                  this.props.history.replace({
-                    pathname: "/signup",
-                    state: {
-                      status: "success",
-                      message:
-                        "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
-                    }
+                  this.setState({
+                    status: "success",
+                    message:
+                      "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
                   });
+                  window.scrollTo(0, 0);
                   break;
                 case 409:
                   console.log("errors", response);
