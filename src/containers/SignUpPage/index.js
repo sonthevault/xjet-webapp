@@ -29,7 +29,7 @@ class SignUpPageContainer extends Component {
 
     return (
       <Formik
-        initialValues={{ email: "", password: "", confirmationPassword: "" }}
+        initialValues={{ email: "", password: "", confirmationPassword: "", gender: "male", address: "", nationality: "", firstName: "", lastName: "", identityNumber: "" }}
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit

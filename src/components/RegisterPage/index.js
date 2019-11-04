@@ -62,11 +62,6 @@ class RegisterPage extends Component {
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative mb-3">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-email-83" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
                           placeholder={t("email")}
                           type="email"
@@ -92,11 +87,6 @@ class RegisterPage extends Component {
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-lock-circle-open" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
                           placeholder={t("password")}
                           type="password"
@@ -130,11 +120,6 @@ class RegisterPage extends Component {
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-lock-circle-open" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
                           placeholder={t("confirmation-password")}
                           type="password"
@@ -167,7 +152,7 @@ class RegisterPage extends Component {
                       </InputGroup>
                     </FormGroup>
 
-                    <h2>ID Verification</h2>
+                    <h2>Personal Details</h2>
 
                     <FormGroup
                       className={classnames({
@@ -175,11 +160,6 @@ class RegisterPage extends Component {
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-lock-circle-open" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
                           placeholder={"Nationality"}
                           type="text"
@@ -210,55 +190,12 @@ class RegisterPage extends Component {
                     <div class="d-flex justify-content-between">
                       <FormGroup
                         className={classnames({
-                          focused: this.state.focusedLastName
-                        })}
-                      >
-                        <InputGroup className="input-group-merge input-group-alternative">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-lock-circle-open" />
-                            </InputGroupText>
-                          </InputGroupAddon>
-                          <Input
-                            placeholder={"First name"}
-                            type="text"
-                            name={"lastName"}
-                            value={values["lastName"]}
-                            onChange={e => {
-                              setFieldValue("lastName", e.target.value);
-                            }}
-                            onFocus={() =>
-                              this.setState({ focusedLastName: true })
-                            }
-                            onBlur={() =>
-                              this.setState({
-                                focusedLastName: false
-                              })
-                            }
-                            invalid={errors.lastName ? true : false}
-                            disabled={isSubmitting}
-                            onKeyDown={this.onKeyDown}
-                          />
-
-                          {errors.lastName && (
-                            <FormFeedback>{errors.lastName}</FormFeedback>
-                          )}
-                        </InputGroup>
-                      </FormGroup>
-
-                      <FormGroup
-                        className={classnames({
                           focused: this.state.focusedFirstName
                         })}
                       >
                         <InputGroup className="input-group-merge input-group-alternative">
-                          <InputGroupAddon addonType="prepend">
-                            <InputGroupText>
-                              <i className="ni ni-lock-circle-open" />
-                            </InputGroupText>
-                          </InputGroupAddon>
                           <Input
-                            placeholder={"Last name"}
+                            placeholder={"First name"}
                             type="text"
                             name={"firstName"}
                             value={values["firstName"]}
@@ -283,7 +220,72 @@ class RegisterPage extends Component {
                           )}
                         </InputGroup>
                       </FormGroup>
+                      <FormGroup
+                        className={classnames({
+                          focused: this.state.focusedLastName
+                        })}
+                      >
+                        <InputGroup className="input-group-merge input-group-alternative">
+                          <Input
+                            placeholder={"Last name"}
+                            type="text"
+                            name={"lastName"}
+                            value={values["lastName"]}
+                            onChange={e => {
+                              setFieldValue("lastName", e.target.value);
+                            }}
+                            onFocus={() =>
+                              this.setState({ focusedLastName: true })
+                            }
+                            onBlur={() =>
+                              this.setState({
+                                focusedLastName: false
+                              })
+                            }
+                            invalid={errors.lastName ? true : false}
+                            disabled={isSubmitting}
+                            onKeyDown={this.onKeyDown}
+                          />
+
+                          {errors.lastName && (
+                            <FormFeedback>{errors.lastName}</FormFeedback>
+                          )}
+                        </InputGroup>
+                      </FormGroup>
                     </div>
+
+                    <FormGroup
+                      className={classnames({
+                        focused: this.state.focusedAddress
+                      })}
+                    >
+                      <InputGroup className="input-group-merge input-group-alternative">
+                        <Input
+                          placeholder={"Address"}
+                          type="text"
+                          name={"address"}
+                          value={values["address"]}
+                          onChange={e => {
+                            setFieldValue("address", e.target.value);
+                          }}
+                          onFocus={() =>
+                            this.setState({ focusedAddress: true })
+                          }
+                          onBlur={() =>
+                            this.setState({
+                              focusedAddress: false
+                            })
+                          }
+                          invalid={errors.address ? true : false}
+                          disabled={isSubmitting}
+                          onKeyDown={this.onKeyDown}
+                        />
+
+                        {errors.address && (
+                          <FormFeedback>{errors.address}</FormFeedback>
+                        )}
+                      </InputGroup>
+                    </FormGroup>
 
                     <FormGroup
                       className={classnames({
@@ -291,11 +293,6 @@ class RegisterPage extends Component {
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-lock-circle-open" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
                           placeholder={"ID Number"}
                           type="text"
@@ -323,42 +320,40 @@ class RegisterPage extends Component {
                       </InputGroup>
                     </FormGroup>
 
-                    <div class="d-flex justify-content-between">
-                      <h3>Gender</h3>
-
-                      <FormGroup>
-                        <InputGroup className="input-group-merge input-group-alternative">
+                    <div class="d-flex align-items-start">
+                      <h4>Gender</h4>
+                      <Col></Col>
+                      <Col>
+                        <label>
                           <Input
                             type="radio"
                             name={"gender"}
-                            checked={values["gender"]}
+                            checked={values["gender"] === "male"}
+                            value="male"
                             onChange={e => {
-                              setFieldValue("gender", e.target.value);
+                              setFieldValue("gender", "male");
                             }}
                             disabled={isSubmitting}
                           />
-                          <InputGroupAddon addonType="append">
-                            <InputGroupText>Male</InputGroupText>
-                          </InputGroupAddon>
-                        </InputGroup>
-                      </FormGroup>
+                          Male
+                        </label>
+                      </Col>
 
-                      <FormGroup>
-                        <InputGroup className="input-group-merge input-group-alternative">
+                      <Col>
+                        <label>
                           <Input
                             type="radio"
                             name={"gender"}
-                            checked={values["gender"]}
+                            checked={values["gender"] === "female"}
+                            value="female"
                             onChange={e => {
-                              setFieldValue("gender", e.target.value);
+                              setFieldValue("gender", "female");
                             }}
                             disabled={isSubmitting}
                           />
-                          <InputGroupAddon addonType="append">
-                            <InputGroupText>Female</InputGroupText>
-                          </InputGroupAddon>
-                        </InputGroup>
-                      </FormGroup>
+                          Female
+                        </label>
+                      </Col>
                     </div>
 
                     <Row className="my-4">
