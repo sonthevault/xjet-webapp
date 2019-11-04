@@ -41,7 +41,6 @@ class SignUpPageContainer extends Component {
           identityNumber: "",
           identityType: "id_card",
           identityCardPicture: "",
-          holdingIdentityCardPicture: "",
           proofOfAddressPicture: ""
         }}
         validateOnChange={false}
@@ -89,10 +88,6 @@ class SignUpPageContainer extends Component {
             errors.identityCardPicture = "Required";
           }
 
-          if (!values.holdingIdentityCardPicture) {
-            errors.holdingIdentityCardPicture = "Required";
-          }
-
           if (!values.proofOfAddressPicture) {
             errors.proofOfAddressPicture = "Required";
           }
@@ -121,8 +116,6 @@ class SignUpPageContainer extends Component {
             },
             documents: {
               identityPicture: values["identityCardPicture"],
-              identityPictureWithPersonPicture:
-                values["holdingIdentityCardPicture"],
               proofOfAddressPicture: values["proofOfAddressPicture"]
             }
           };
@@ -137,8 +130,8 @@ class SignUpPageContainer extends Component {
 
               switch (response.status) {
                 case 201:
-                  this.props.history.push({
-                    pathname: "/login",
+                  this.props.history.replace({
+                    pathname: "/signup",
                     state: {
                       status: "success",
                       message:
