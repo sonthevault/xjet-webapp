@@ -26,7 +26,7 @@ import AuthHeader from "components/Headers/AuthHeader.jsx";
 import API from "../../network/API";
 import { path } from "ramda";
 
-import styles from "./index.module.css";
+import "./index.css";
 
 class RegisterPage extends Component {
   state = {
@@ -163,13 +163,20 @@ class RegisterPage extends Component {
         <AuthHeader title="XJET.IO" lead={t("create-new-account")} />
         <Container className="mt--8 pb-5">
           <Row className="justify-content-center">
-            <Col lg="6" md="8">
+            <Col lg="12" md="8">
               {message && <Alert color={status}>{message}</Alert>}
               <Card className="bg-secondary border-0">
                 <CardBody className="px-lg-5 py-lg-5">
-                  <div className="text-center text-muted mb-4">
-                    <h2>{t("sign-up-label")}</h2>
-                  </div>
+                  {/* ======================== Start Personal Details PART ==========================*/}
+                  <h2>Registration Process</h2>
+                  <label>
+                    Please have the following documents ready before you start
+                    the registration process. This process will take
+                    approximately 5 minutes or less to complete
+                  </label>
+
+                  <br />
+
                   <Form role="form">
                     <FormGroup
                       className={classnames({
@@ -597,72 +604,76 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-                    <div class="d-flex justify-content-between">
-                      <FormGroup
-                        className={classnames({
-                          focused: this.state.focusedFirstName
-                        })}
-                      >
-                        <InputGroup className="input-group-merge input-group-alternative">
-                          <Input
-                            placeholder={"First name"}
-                            type="text"
-                            name={"firstName"}
-                            value={values["firstName"]}
-                            onChange={e => {
-                              setFieldValue("firstName", e.target.value);
-                            }}
-                            onFocus={() =>
-                              this.setState({ focusedFirstName: true })
-                            }
-                            onBlur={() =>
-                              this.setState({
-                                focusedFirstName: false
-                              })
-                            }
-                            invalid={errors.firstName ? true : false}
-                            disabled={isSubmitting}
-                            onKeyDown={this.onKeyDown}
-                          />
+                    <Row>
+                      <Col>
+                        <FormGroup
+                          className={classnames({
+                            focused: this.state.focusedFirstName
+                          })}
+                        >
+                          <InputGroup className="input-group-merge input-group-alternative">
+                            <Input
+                              placeholder={"First name"}
+                              type="text"
+                              name={"firstName"}
+                              value={values["firstName"]}
+                              onChange={e => {
+                                setFieldValue("firstName", e.target.value);
+                              }}
+                              onFocus={() =>
+                                this.setState({ focusedFirstName: true })
+                              }
+                              onBlur={() =>
+                                this.setState({
+                                  focusedFirstName: false
+                                })
+                              }
+                              invalid={errors.firstName ? true : false}
+                              disabled={isSubmitting}
+                              onKeyDown={this.onKeyDown}
+                            />
 
-                          {errors.firstName && (
-                            <FormFeedback>{errors.firstName}</FormFeedback>
-                          )}
-                        </InputGroup>
-                      </FormGroup>
-                      <FormGroup
-                        className={classnames({
-                          focused: this.state.focusedLastName
-                        })}
-                      >
-                        <InputGroup className="input-group-merge input-group-alternative">
-                          <Input
-                            placeholder={"Last name"}
-                            type="text"
-                            name={"lastName"}
-                            value={values["lastName"]}
-                            onChange={e => {
-                              setFieldValue("lastName", e.target.value);
-                            }}
-                            onFocus={() =>
-                              this.setState({ focusedLastName: true })
-                            }
-                            onBlur={() =>
-                              this.setState({
-                                focusedLastName: false
-                              })
-                            }
-                            invalid={errors.lastName ? true : false}
-                            disabled={isSubmitting}
-                            onKeyDown={this.onKeyDown}
-                          />
+                            {errors.firstName && (
+                              <FormFeedback>{errors.firstName}</FormFeedback>
+                            )}
+                          </InputGroup>
+                        </FormGroup>
+                      </Col>
+                      <Col>
+                        <FormGroup
+                          className={classnames({
+                            focused: this.state.focusedLastName
+                          })}
+                        >
+                          <InputGroup className="input-group-merge input-group-alternative">
+                            <Input
+                              placeholder={"Last name"}
+                              type="text"
+                              name={"lastName"}
+                              value={values["lastName"]}
+                              onChange={e => {
+                                setFieldValue("lastName", e.target.value);
+                              }}
+                              onFocus={() =>
+                                this.setState({ focusedLastName: true })
+                              }
+                              onBlur={() =>
+                                this.setState({
+                                  focusedLastName: false
+                                })
+                              }
+                              invalid={errors.lastName ? true : false}
+                              disabled={isSubmitting}
+                              onKeyDown={this.onKeyDown}
+                            />
 
-                          {errors.lastName && (
-                            <FormFeedback>{errors.lastName}</FormFeedback>
-                          )}
-                        </InputGroup>
-                      </FormGroup>
-                    </div>
+                            {errors.lastName && (
+                              <FormFeedback>{errors.lastName}</FormFeedback>
+                            )}
+                          </InputGroup>
+                        </FormGroup>
+                      </Col>
+                    </Row>
 
                     <FormGroup
                       className={classnames({
@@ -710,53 +721,63 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-                    <Input
-                      placeholder={"ID Type"}
-                      type="select"
-                      name={"identityType"}
-                      value={values["identityType"]}
-                      onChange={e => {
-                        setFieldValue("identityType", e.target.value);
-                      }}
-                      invalid={errors.identityType ? true : false}
-                      disabled={isSubmitting}
-                    >
-                      <option value="id_card">Id Card</option>
-                      <option value="driver_license">Driver License</option>
-                      <option value="passport">Passport</option>
-                    </Input>
-                    <FormGroup
-                      className={classnames({
-                        focused: this.state.focusedIdentityNumber
-                      })}
-                    >
-                      <InputGroup className="input-group-merge input-group-alternative">
+                    <Row>
+                      <Col xs="3">
                         <Input
-                          placeholder={"ID Number"}
-                          type="text"
-                          name={"identityNumber"}
-                          value={values["identityNumber"]}
+                          placeholder={"ID Type"}
+                          type="select"
+                          name={"identityType"}
+                          value={values["identityType"]}
                           onChange={e => {
-                            setFieldValue("identityNumber", e.target.value);
+                            setFieldValue("identityType", e.target.value);
                           }}
-                          onFocus={() =>
-                            this.setState({ focusedIdentityNumber: true })
-                          }
-                          onBlur={() =>
-                            this.setState({
-                              focusedIdentityNumber: false
-                            })
-                          }
-                          invalid={errors.identityNumber ? true : false}
+                          invalid={errors.identityType ? true : false}
                           disabled={isSubmitting}
-                          onKeyDown={this.onKeyDown}
-                        />
+                        >
+                          <option value="id_card">National ID</option>
+                          <option value="driver_license">Driver License</option>
+                          <option value="passport">Passport</option>
+                        </Input>
+                      </Col>
 
-                        {errors.identityNumber && (
-                          <FormFeedback>{errors.identityNumber}</FormFeedback>
-                        )}
-                      </InputGroup>
-                    </FormGroup>
+                      <Col xs="9">
+                        <FormGroup
+                          className={classnames({
+                            focused: this.state.focusedIdentityNumber
+                          })}
+                        >
+                          <InputGroup className="input-group-merge input-group-alternative">
+                            <Input
+                              placeholder={"ID Number"}
+                              type="text"
+                              name={"identityNumber"}
+                              value={values["identityNumber"]}
+                              onChange={e => {
+                                setFieldValue("identityNumber", e.target.value);
+                              }}
+                              onFocus={() =>
+                                this.setState({ focusedIdentityNumber: true })
+                              }
+                              onBlur={() =>
+                                this.setState({
+                                  focusedIdentityNumber: false
+                                })
+                              }
+                              invalid={errors.identityNumber ? true : false}
+                              disabled={isSubmitting}
+                              onKeyDown={this.onKeyDown}
+                            />
+
+                            {errors.identityNumber && (
+                              <FormFeedback>
+                                {errors.identityNumber}
+                              </FormFeedback>
+                            )}
+                          </InputGroup>
+                        </FormGroup>
+                      </Col>
+                    </Row>
+
                     <div class="d-flex align-items-start">
                       <h4>Gender</h4>
                       <Col></Col>
@@ -796,182 +817,92 @@ class RegisterPage extends Component {
                     <br />
                     {/* ======================== Start Document Upload PART ==========================*/}
                     <h2>Identification Documents</h2>
-                    <h4>Photo Requirements</h4>
                     <Row>
                       <Col xs="6">
-                        The image must be of high quality and unobstructed
-                      </Col>
-                      <Col xs="3">No larger than 10mb in size</Col>
-                      <Col xs="3">Format: jpg, png, jpeg</Col>
-                    </Row>
-                    <br />
-                    <h4>a photo of the front of your valid ID</h4>
-                    <label>
-                      Upload the front page of your valid ID and the image must
-                      be clear.
-                    </label>
-                    <Row>
-                      <Col>
-                        <Media
-                          width="75%"
-                          object
-                          src={require("assets/img/identity_placeholder.png")}
-                          alt="Generic placeholder image"
-                        />
-                      </Col>
-                      <Col className={styles.uploadPlaceholder}>
-                        {this.state.identityCardFile ? (
+                        <strong>Acceptable documents (Both sides)</strong>
+                        <p>Choose from either:</p>
+                        <p>1. Passport</p>
+                        <p>2. National ID</p>
+                        <p>3. Drivers License</p>
+                        <br />
+
+                        {this.state.identityCardFile && (
                           <Media
                             width="75%"
                             object
                             src={this.state.identityCardFile}
                             alt="Generic placeholder image"
                           />
-                        ) : (
-                          <>
-                            {" "}
-                            <i class="fa fa-upload" aria-hidden="true">
-                              Upload
-                            </i>
-                            <Input
-                              type="file"
-                              name="identityCardFile"
-                              onChange={this.onIdentityCardFileChangeHandler}
-                            ></Input>
-                          </>
                         )}
+
+                        <div class="upload-button-container">
+                          <img
+                            src={require("../../assets/img/upload_button.png")}
+                            alt=""
+                            class="upload-button-icon"
+                          ></img>
+                          <span class="upload-btn">Upload file(s)</span>
+                          <Input
+                            type="file"
+                            name="identityCardFile"
+                            onChange={this.onIdentityCardFileChangeHandler}
+                          ></Input>
+                          <Input
+                            type="hidden"
+                            name={"identityCardPicture"}
+                            value={values["identityCardPicture"]}
+                          ></Input>
+                        </div>
                       </Col>
-                      <Input
-                        type="hidden"
-                        name={"identityCardPicture"}
-                        value={values["identityCardPicture"]}
-                      ></Input>
-                    </Row>
-                    <br />
-                    <h4>Picture of you holding front page of your valid ID</h4>
-                    <label>
-                      Please upload you holding the front page of your valid ID
-                      (Blurred image not acceptable). Note: name, exchange name,
-                      application date
-                    </label>
-                    <Row>
-                      <Col>
-                        <Media
-                          width="75%"
-                          object
-                          src={require("assets/img/holding_identity_placeholder.png")}
-                          alt="Generic placeholder image"
-                        />
-                      </Col>
-                      <Col className={styles.uploadPlaceholder}>
-                        {this.state.holdingIdentityCardFile ? (
-                          <Media
-                            width="75%"
-                            object
-                            src={this.state.holdingIdentityCardFile}
-                            alt="Generic placeholder image"
-                          />
-                        ) : (
-                          <>
-                            <i class="fa fa-upload" aria-hidden="true">
-                              Upload
-                            </i>
-                            <Input
-                              type="file"
-                              name="holdingIdentityCardFile"
-                              onChange={
-                                this.onHoldingIdentityCardFileChangeHandler
-                              }
-                            ></Input>
-                          </>
-                        )}
-                      </Col>
-                      <Input
-                        type="hidden"
-                        name={"holdingIdentityCardPicture"}
-                        value={values["holdingIdentityCardPicture"]}
-                      ></Input>
-                    </Row>
-                    <br />
-                    <h4>Proof of Address</h4>
-                    <label>
-                      Utility Bill/Telephone Bill/Bank Statement (Must be not
-                      more than 3 months old.).
-                    </label>
-                    <Row>
-                      <Col>
-                        <Media
-                          width="75%"
-                          object
-                          src={require("assets/img/holding_identity_placeholder.png")}
-                          alt="Generic placeholder image"
-                        />
-                      </Col>
-                      <Col className={styles.uploadPlaceholder}>
-                        {this.state.proofOfAddressFile ? (
+                      <Col xs="6">
+                        <strong>
+                          Proof of Address (Must be not more than 3 months old)
+                        </strong>
+                        <p>Choose from either:</p>
+                        <p>1. Utility Bill</p>
+                        <p>2. Telephone Bill</p>
+                        <p>3. Bank Statement</p>
+                        <br />
+
+                        {this.state.proofOfAddressFile && (
                           <Media
                             width="75%"
                             object
                             src={this.state.proofOfAddressFile}
                             alt="Generic placeholder image"
                           />
-                        ) : (
-                          <>
-                            <i class="fa fa-upload" aria-hidden="true">
-                              Upload
-                            </i>
-                            <Input
-                              type="file"
-                              name="proofOfAddressFile"
-                              onChange={this.onProofOfAddressFileChangeHandler}
-                            ></Input>
-                          </>
                         )}
-                      </Col>
-                      <Input
-                        type="hidden"
-                        name={"proofOfAddressPicture"}
-                        value={values["proofOfAddressPicture"]}
-                      ></Input>
-                    </Row>
-                    <Row className="my-4">
-                      <Col xs="12">
-                        <div className="custom-control custom-control-alternative custom-checkbox">
-                          <input
-                            className="custom-control-input"
-                            id="customCheckRegister"
-                            type="checkbox"
-                            checked={values["toc"]}
-                            onChange={e => {
-                              setFieldValue("toc", e.target.value);
-                            }}
-                          />
-                          <label
-                            className="custom-control-label"
-                            htmlFor="customCheckRegister"
-                          >
-                            <span className="text-muted">
-                              {t("toc-1")}{" "}
-                              <a
-                                href="#pablo"
-                                onClick={e => e.preventDefault()}
-                              >
-                                {t("toc-2")}
-                              </a>
-                            </span>
-                          </label>
+
+                        <div class="upload-button-container">
+                          <img
+                            src={require("../../assets/img/upload_button.png")}
+                            alt=""
+                            class="upload-button-icon"
+                          ></img>
+                          <span class="upload-btn">Upload file(s)</span>
+
+                          <Input
+                            type="file"
+                            name="proofOfAddressFile"
+                            onChange={this.onProofOfAddressFileChangeHandler}
+                          ></Input>
+                          <Input
+                            type="hidden"
+                            name={"proofOfAddressPicture"}
+                            value={values["proofOfAddressPicture"]}
+                          ></Input>
                         </div>
-                        <Input
-                          invalid={errors.toc ? true : false}
-                          type="hidden"
-                          value={values["toc"]}
-                        />
-                        {errors.toc && (
-                          <FormFeedback>{errors.toc}</FormFeedback>
-                        )}
                       </Col>
                     </Row>
-                    <div className="text-center">
+                    <br />
+
+                    <p>
+                      Once submitted, please allow 3 business days for
+                      processing and verification.
+                    </p>
+                    <br />
+                    <p>Thank you.</p>
+                    <div>
                       <Button
                         className="mt-4"
                         color="info"
@@ -979,7 +910,7 @@ class RegisterPage extends Component {
                         onClick={submitForm}
                         disabled={isSubmitting}
                       >
-                        {t("create-account")}
+                        Submit
                       </Button>
                     </div>
                   </Form>
