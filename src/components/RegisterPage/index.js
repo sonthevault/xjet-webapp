@@ -20,6 +20,8 @@ import {
   Alert,
   Media
 } from "reactstrap";
+import DatePicker from "react-datetime";
+
 import AuthHeader from "components/Headers/AuthHeader.jsx";
 import API from "../../network/API";
 import { path } from "ramda";
@@ -30,7 +32,8 @@ class RegisterPage extends Component {
   state = {
     identityCardFile: null,
     holdingIdentityCardFile: null,
-    proofOfAddressFile: null
+    proofOfAddressFile: null,
+    currentBirthday: new Date()
   };
 
   onKeyDown = e => {
@@ -133,6 +136,16 @@ class RegisterPage extends Component {
     }
   };
 
+  onBirthdayChangeHandler = e => {
+    const { setFieldValue } = this.props.formik;
+    const selectedDate = e.format("MM-DD-YYYY");
+    console.log("onBirthdayChangeHandler", selectedDate);
+    this.setState({
+      currentBirthday: selectedDate
+    });
+    setFieldValue("birthday", selectedDate);
+  };
+
   render() {
     const { formik, t, status, message } = this.props;
 
@@ -215,7 +228,6 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-
                     <FormGroup
                       className={classnames({
                         focused: this.state.focusedConfirmationPassword
@@ -253,10 +265,8 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-
                     {/* ======================== Start Personal Details PART ==========================*/}
                     <h2>Personal Details</h2>
-
                     <FormGroup>
                       <InputGroup className="input-group-merge input-group-alternative">
                         <Input
@@ -587,7 +597,6 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-
                     <div class="d-flex justify-content-between">
                       <FormGroup
                         className={classnames({
@@ -660,6 +669,20 @@ class RegisterPage extends Component {
                         focused: this.state.focusedAddress
                       })}
                     >
+                      <label>Birthday</label>
+                      <DatePicker
+                        value={this.state.currentBirthday}
+                        onChange={this.onBirthdayChangeHandler}
+                        dateFormat="MM-DD-YYYY"
+                        timeFormat={false}
+                      />
+                    </FormGroup>
+
+                    <FormGroup
+                      className={classnames({
+                        focused: this.state.focusedAddress
+                      })}
+                    >
                       <InputGroup className="input-group-merge input-group-alternative">
                         <Input
                           placeholder={"Address"}
@@ -687,7 +710,6 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-
                     <Input
                       placeholder={"ID Type"}
                       type="select"
@@ -735,7 +757,6 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-
                     <div class="d-flex align-items-start">
                       <h4>Gender</h4>
                       <Col></Col>
@@ -771,14 +792,10 @@ class RegisterPage extends Component {
                         </label>
                       </Col>
                     </div>
-
                     {/* ======================== End Personal Details PART ==========================*/}
-
                     <br />
-
                     {/* ======================== Start Document Upload PART ==========================*/}
                     <h2>Identification Documents</h2>
-
                     <h4>Photo Requirements</h4>
                     <Row>
                       <Col xs="6">
@@ -787,9 +804,7 @@ class RegisterPage extends Component {
                       <Col xs="3">No larger than 10mb in size</Col>
                       <Col xs="3">Format: jpg, png, jpeg</Col>
                     </Row>
-
                     <br />
-
                     <h4>a photo of the front of your valid ID</h4>
                     <label>
                       Upload the front page of your valid ID and the image must
@@ -832,9 +847,7 @@ class RegisterPage extends Component {
                         value={values["identityCardPicture"]}
                       ></Input>
                     </Row>
-
                     <br />
-
                     <h4>Picture of you holding front page of your valid ID</h4>
                     <label>
                       Please upload you holding the front page of your valid ID
@@ -879,9 +892,7 @@ class RegisterPage extends Component {
                         value={values["holdingIdentityCardPicture"]}
                       ></Input>
                     </Row>
-
                     <br />
-
                     <h4>Proof of Address</h4>
                     <label>
                       Utility Bill/Telephone Bill/Bank Statement (Must be not
@@ -923,7 +934,6 @@ class RegisterPage extends Component {
                         value={values["proofOfAddressPicture"]}
                       ></Input>
                     </Row>
-
                     <Row className="my-4">
                       <Col xs="12">
                         <div className="custom-control custom-control-alternative custom-checkbox">

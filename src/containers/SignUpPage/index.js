@@ -37,6 +37,7 @@ class SignUpPageContainer extends Component {
           nationality: "",
           firstName: "",
           lastName: "",
+          birthday: "",
           identityNumber: "",
           identityType: "id_card",
           identityCardPicture: "",
@@ -115,7 +116,8 @@ class SignUpPageContainer extends Component {
               identityNumber: values["identityNumber"],
               identityType: values["identityType"],
               nationality: values["nationality"],
-              gender: values["gender"]
+              gender: values["gender"],
+              birthday: values["birthday"]
             },
             documents: {
               identityPicture: values["identityCardPicture"],
