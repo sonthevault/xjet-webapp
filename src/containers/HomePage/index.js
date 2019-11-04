@@ -37,11 +37,9 @@ class HomePage extends Component {
             </Col>
           </Row>
 
-          <br />
-
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <p className={styles.text}>
+              <p className={styles.secondText}>
                 Much more than just an exchange, Xjet will be the world’s first
                 digital service to offer international trading, wallet, debit
                 card and payment services with millions of traders worldwide
@@ -51,10 +49,9 @@ class HomePage extends Component {
             </Col>
           </Row>
 
-          <br />
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <h3 className={styles.text}>100% Transactions Guaranteed!</h3>
+              <h2 className={styles.textHeadline}>Transactions Guaranteed!</h2>
             </Col>
           </Row>
 
@@ -87,10 +84,9 @@ class HomePage extends Component {
             </Col>
           </Row>
 
-          <br />
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <h3 className={styles.text}>XJET Sign Up Bonuses</h3>
+              <h2 className={styles.textHeadline}>XJET Sign Up Bonuses</h2>
             </Col>
           </Row>
           <Row>
@@ -114,7 +110,7 @@ class HomePage extends Component {
 
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <Button className="applyButton" onClick={this.onApplyButtonClick}>Apply Here</Button>
+              <Button className="applyButton" onClick={this.onApplyButtonClick}>Register Here</Button>
             </Col>
           </Row>
         </Container>
