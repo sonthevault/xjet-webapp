@@ -17,7 +17,7 @@ class ProfileHeader extends React.Component {
             backgroundPosition: "center top"
           }}
         >
-          <span className="mask bg-gradient-info opacity-8" />
+          <span className="mask opacity-8" />
 
           <Container className="d-flex align-items-center" fluid>
             <Row>

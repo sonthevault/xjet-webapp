@@ -61,7 +61,7 @@ class IndexHeader extends React.Component {
                       </Card>
                       <Card>
                         <CardBody>
-                          <div className="icon icon-shape bg-gradient-info text-white rounded-circle shadow mb-4">
+                          <div className="icon icon-shape text-white rounded-circle shadow mb-4">
                             <i className="ni ni-active-40" />
                           </div>
                           <h5 className="h3">Plugins</h5>
