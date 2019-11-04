@@ -17,9 +17,12 @@ import {
   Container,
   Row,
   Col,
-  Alert
+  Alert,
+  Media
 } from "reactstrap";
 import AuthHeader from "components/Headers/AuthHeader.jsx";
+
+import styles from "./index.module.css";
 
 class RegisterPage extends Component {
   state = {};
@@ -152,6 +155,7 @@ class RegisterPage extends Component {
                       </InputGroup>
                     </FormGroup>
 
+                    {/* ======================== Start Personal Details PART ==========================*/}
                     <h2>Personal Details</h2>
 
                     <FormGroup
@@ -355,6 +359,105 @@ class RegisterPage extends Component {
                         </label>
                       </Col>
                     </div>
+
+                    {/* ======================== End Personal Details PART ==========================*/}
+
+                    <br />
+
+                    {/* ======================== Start Document Upload PART ==========================*/}
+                    <h2>Identification Documents</h2>
+
+                    <h4>Photo Requirements</h4>
+                    <Row>
+                      <Col xs="6">
+                        The image must be of high quality and unobstructed
+                      </Col>
+                      <Col xs="3">No larger than 10mb in size</Col>
+                      <Col xs="3">Format: jpg, png, jpeg</Col>
+                    </Row>
+
+                    <br />
+
+                    <h4>a photo of the front of your valid ID</h4>
+                    <label>
+                      Upload the front page of your valid ID and the image must
+                      be clear.
+                    </label>
+                    <Row>
+                      <Col>
+                        <Media
+                          width="75%"
+                          object
+                          src={require("assets/img/identity_placeholder.png")}
+                          alt="Generic placeholder image"
+                        />
+                      </Col>
+                      <Col className={styles.uploadPlaceholder}>
+                        <i class="fa fa-upload" aria-hidden="true">
+                          Upload
+                        </i>
+                      </Col>
+                      <Input
+                        type="hidden"
+                        name={"identityCardPicture"}
+                        value={values["identityCardPicture"]}
+                      ></Input>
+                    </Row>
+
+                    <br />
+
+                    <h4>Picture of you holding front page of your valid ID</h4>
+                    <label>
+                      Please upload you holding the front page of your valid ID
+                      (Blurred image not acceptable). Note: name, exchange name,
+                      application date
+                    </label>
+                    <Row>
+                      <Col>
+                        <Media
+                          width="75%"
+                          object
+                          src={require("assets/img/holding_identity_placeholder.png")}
+                          alt="Generic placeholder image"
+                        />
+                      </Col>
+                      <Col className={styles.uploadPlaceholder}>
+                        <i class="fa fa-upload" aria-hidden="true">
+                          Upload
+                        </i>
+                      </Col>
+                      <Input
+                        type="hidden"
+                        name={"holdingIdentityCardPicture"}
+                        value={values["holdingIdentityCardPicture"]}
+                      ></Input>
+                    </Row>
+
+                    <h4>Proof of Address</h4>
+                    <label>
+                      Utility Bill/Telephone Bill/Bank Statement (Must be not
+                      more than 3 months old.).
+                    </label>
+                    <Row>
+                      <Col>
+                        <Media
+                          width="75%"
+                          object
+                          src={require("assets/img/holding_identity_placeholder.png")}
+                          alt="Generic placeholder image"
+                        />
+                      </Col>
+                      <Col className={styles.uploadPlaceholder}>
+                        <i class="fa fa-upload" aria-hidden="true">
+                          Upload
+                        </i>
+                      </Col>
+                      <Input
+                        type="hidden"
+                        name={"proofOfAddressPicture"}
+                        value={values["proofOfAddressPicture"]}
+                      ></Input>
+                    </Row>
 
                     <Row className="my-4">
                       <Col xs="12">
