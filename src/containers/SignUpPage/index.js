@@ -39,7 +39,7 @@ class SignUpPageContainer extends Component {
           lastName: "",
           birthday: "",
           identityNumber: "",
-          identityType: "id_card",
+          identityType: "passport",
           identityCardPicture: "",
           proofOfAddressPicture: ""
         }}
@@ -132,7 +132,7 @@ class SignUpPageContainer extends Component {
                   this.setState({
                     status: "success",
                     message:
-                      "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
+                      "Your registration submitted successfully, We will update your registration status after process KYC in a week."
                   });
                   window.scrollTo(0, 0);
                   break;
