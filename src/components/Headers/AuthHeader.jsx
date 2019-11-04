@@ -8,7 +8,7 @@ class AuthHeader extends React.Component {
   render() {
     return (
       <>
-        <div className="header py-7 py-lg-8 pt-lg-9">
+        <div className="header py-7 py-lg-5 pt-lg-4">
           <Container>
             <div className="header-body text-center mb-7">
               <Row className="justify-content-center">
