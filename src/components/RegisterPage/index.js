@@ -897,7 +897,7 @@ class RegisterPage extends Component {
                     <br />
 
                     <p>
-                      Once submitted, please allow 3 business days for
+                      Once submitted, please allow 3~7 working days for
                       processing and verification.
                     </p>
                     <br />
