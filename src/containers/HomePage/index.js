@@ -17,7 +17,6 @@ class HomePage extends Component {
       <div className={styles.container}>
         <Container>
           <br />
-          <br />
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
               <img
@@ -28,9 +27,11 @@ class HomePage extends Component {
             </Col>
           </Row>
 
+          <br />
+
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <h1 className={styles.text}>
+              <h1 className={styles.title}>
                 The Future of Digital Banking is Taking Off
               </h1>
             </Col>
