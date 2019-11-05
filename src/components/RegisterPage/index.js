@@ -18,11 +18,15 @@ import {
   Row,
   Col,
   Alert,
-  Media
+  Media,
+  Modal,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 import DatePicker from "react-datetime";
 
 import AuthHeader from "components/Headers/AuthHeader.jsx";
+import LoadingButton from "components/LoadingButton";
 import API from "../../network/API";
 import { path } from "ramda";
 
@@ -33,7 +37,14 @@ class RegisterPage extends Component {
     identityCardFile: null,
     holdingIdentityCardFile: null,
     proofOfAddressFile: null,
-    currentBirthday: new Date()
+    currentBirthday: new Date(),
+    successRegisterModal: false,
+    isUploadingIdentityCardFile: false,
+    isUploadingProofOfAddressFile: false
+  };
+
+  componentDidMount = () => {
+    const { formik, t, status, message } = this.props;
   };
 
   onKeyDown = e => {
@@ -53,8 +64,11 @@ class RegisterPage extends Component {
       data.append("name", file.name);
       data.append("type", "image");
 
+      this.setState({ isUploadingIdentityCardFile: true });
+
       API.upload(data)
         .then(response => {
+          this.setState({ isUploadingIdentityCardFile: false });
           console.log("response", response);
           if (response.status === 200) {
             const identityCardFile = path(["data", "data", "url"], response);
@@ -67,6 +81,7 @@ class RegisterPage extends Component {
           }
         })
         .catch(error => {
+          this.setState({ isUploadingIdentityCardFile: false });
           console.log("error", error);
         });
     }
@@ -82,8 +97,11 @@ class RegisterPage extends Component {
       data.append("name", file.name);
       data.append("type", "image");
 
+      this.setState({ isUploadingProofOfAddressFile: true });
+
       API.upload(data)
         .then(response => {
+          this.setState({ isUploadingProofOfAddressFile: false });
           console.log("response", response);
           if (response.status === 200) {
             const holdingIdentityCardFile = path(
@@ -102,6 +120,7 @@ class RegisterPage extends Component {
           }
         })
         .catch(error => {
+          this.setState({ isUploadingProofOfAddressFile: false });
           console.log("error", error);
         });
     }
@@ -851,12 +870,17 @@ class RegisterPage extends Component {
                         )}
 
                         <div class="upload-button-container">
-                          <img
-                            src={require("../../assets/img/upload_button.png")}
-                            alt=""
-                            class="upload-button-icon"
-                          ></img>
-                          <span class="upload-btn">Upload</span>
+                          <LoadingButton
+                            color={"#000b33"}
+                            loading={this.state.isUploadingIdentityCardFile}
+                          >
+                            <img
+                              src={require("../../assets/img/upload_button.png")}
+                              alt=""
+                              class="upload-button-icon"
+                            ></img>
+                            <span class="upload-btn">Upload</span>
+                          </LoadingButton>
                           <Input
                             type="file"
                             name="identityCardFile"
@@ -889,12 +913,17 @@ class RegisterPage extends Component {
                         )}
 
                         <div class="upload-button-container">
-                          <img
-                            src={require("../../assets/img/upload_button.png")}
-                            alt=""
-                            class="upload-button-icon"
-                          ></img>
-                          <span class="upload-btn">Upload</span>
+                          <LoadingButton
+                            color={"#000b33"}
+                            loading={this.state.isUploadingProofOfAddressFile}
+                          >
+                            <img
+                              src={require("../../assets/img/upload_button.png")}
+                              alt=""
+                              class="upload-button-icon"
+                            ></img>
+                            <span class="upload-btn">Upload</span>
+                          </LoadingButton>
 
                           <Input
                             type="file"
