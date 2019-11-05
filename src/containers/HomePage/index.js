@@ -97,6 +97,10 @@ class HomePage extends Component {
               </div>
             </Col>
           </Row>
+
+          <Row>
+            <Col style={{ padding: "10px" }}></Col>
+          </Row>
         </Container>
       </div>
     );
