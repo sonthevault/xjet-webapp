@@ -15,7 +15,7 @@
   z-index: -999;
   top: 0;
   left: 0;
-  overflow:scroll;
+  overflow: scroll;
   background-image: url("../../assets/img/background.jpg");
 }
 
@@ -43,8 +43,23 @@
   color: #ffffff;
 }
 
-.li {
+ul {
+    list-style-type:none;
+    padding-left: 0px;
+}
+
+ul li:before {
+    content:"\2713\0020";
+    font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+    color: #ffffff;
+    margin-right: 0.5rem;
+}
+
+
+li {
   color: #ffffff;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .applyButton {

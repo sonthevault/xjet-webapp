@@ -9,8 +9,8 @@ class HomePage extends Component {
   componentDidMount() {}
 
   onApplyButtonClick = () => {
-    this.props.history.push("/signup")
-  }
+    this.props.history.push("/signup");
+  };
 
   render() {
     return (
@@ -59,27 +59,14 @@ class HomePage extends Component {
             <Col sm="12" md={{ size: 6, offset: 6 }}>
               <ul>
                 <li>
-                  <p className={styles.text}>
-                    The highest level of security with the fastest transaction
-                    processing times.
-                  </p>
+                  The highest level of security with the fastest transaction
+                  processing times.
                 </li>
                 <li>
-                  <p className={styles.text}>
-                    Bonus incentives on trades and payments or use of debit
-                    card.
-                  </p>
+                  Bonus incentives on trades and payments or use of debit card.
                 </li>
-                <li>
-                  <p className={styles.text}>
-                    Advanced fraud detection using AI and machine learning
-                  </p>
-                </li>
-                <li>
-                  <p className={styles.text}>
-                    External auditing and PCI DSS Compliance
-                  </p>
-                </li>
+                <li>Advanced fraud detection using AI and machine learning</li>
+                <li>External auditing and PCI DSS Compliance</li>
               </ul>
             </Col>
           </Row>
@@ -93,16 +80,11 @@ class HomePage extends Component {
             <Col sm="12" md={{ size: 6, offset: 6 }}>
               <ul>
                 <li>
-                  <p className={styles.text}>
-                    Be among the first to join and get bonus XJET pre-sale
-                    tokens.
-                  </p>
+                  Be among the first to join and get bonus XJET pre-sale tokens.
                 </li>
                 <li>
-                  <p className={styles.text}>
-                    The 1st 1,000 registration only. See KYC registration
-                    process below.
-                  </p>
+                  The 1st 1,000 registration only. See KYC registration process
+                  below.
                 </li>
               </ul>
             </Col>
@@ -110,7 +92,9 @@ class HomePage extends Component {
 
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <Button className="applyButton" onClick={this.onApplyButtonClick}>Register Here</Button>
+              <Button className="applyButton" onClick={this.onApplyButtonClick}>
+                Register Here
+              </Button>
             </Col>
           </Row>
         </Container>
