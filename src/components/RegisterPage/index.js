@@ -138,12 +138,15 @@ class RegisterPage extends Component {
 
   onBirthdayChangeHandler = e => {
     const { setFieldValue } = this.props.formik;
-    const selectedDate = e.format("MM-DD-YYYY");
-    console.log("onBirthdayChangeHandler", selectedDate);
-    this.setState({
-      currentBirthday: selectedDate
-    });
-    setFieldValue("birthday", selectedDate);
+
+    if (e && (typeof e.format === "function")) {
+      const selectedDate = e.format("MM-DD-YYYY");
+      console.log("onBirthdayChangeHandler", selectedDate);
+      this.setState({
+        currentBirthday: selectedDate
+      });
+      setFieldValue("birthday", selectedDate);
+    }
   };
 
   render() {
