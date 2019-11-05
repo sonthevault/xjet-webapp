@@ -44,17 +44,16 @@
 }
 
 ul {
-    list-style-type:none;
-    padding-left: 0px;
+  list-style-type: none;
+  padding-left: 0px;
 }
 
 ul li:before {
-    content:"\2713\0020";
-    font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
-    color: #ffffff;
-    margin-right: 0.5rem;
+  content: "\2713\0020";
+  font-family: "Lucida Sans Unicode", "Arial Unicode MS", Arial;
+  color: #ffffff;
+  margin-right: 0.5rem;
 }
-
 
 li {
   color: #ffffff;
@@ -63,16 +62,27 @@ li {
 }
 
 .applyButton {
-  width: 222px;
-  height: 60px;
-  font-family: Poppins;
-  font-size: 40px;
-  font-weight: 600;
-  font-stretch: normal;
-  font-style: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  color: #004e87;
+  width: 180px;
+  height: 50px;
+  border-radius: 30px;
+  background-image: linear-gradient(to top, #feb176, #f94a75);
+
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.applyButtonText {
+    display: inline-block;
+    width: 180px;
+    font-size: 20x;
+    font-weight: 900;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #004e87;
+    text-align: center;
 }
 
 .title {
