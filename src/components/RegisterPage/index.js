@@ -172,15 +172,16 @@ class RegisterPage extends Component {
                 <CardBody className="px-lg-5 py-lg-5">
                   {/* ======================== Start Personal Details PART ==========================*/}
                   <h2>Registration Process</h2>
-                  <label>
+                  <p>
                     Please have the following documents ready before you start
                     the registration process. This process will take
                     approximately 5 minutes or less to complete
-                  </label>
+                  </p>
 
                   <br />
 
                   <Form role="form">
+                    <label>Email</label>
                     <FormGroup
                       className={classnames({
                         focused: this.state.focusedEmail
@@ -206,6 +207,8 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
+
+                    <label>Password</label>
                     <FormGroup
                       className={classnames({
                         focused: this.state.focusedPassword
@@ -238,6 +241,9 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
+
+
+                    <label>Confirm password</label>
                     <FormGroup
                       className={classnames({
                         focused: this.state.focusedConfirmationPassword
@@ -278,6 +284,7 @@ class RegisterPage extends Component {
                     {/* ======================== Start Personal Details PART ==========================*/}
                     <h2>Personal Details</h2>
                     <FormGroup>
+                      <label>Nationality</label>
                       <InputGroup className="input-group-merge input-group-alternative">
                         <Input
                           placeholder={"Nationality"}
@@ -609,6 +616,7 @@ class RegisterPage extends Component {
                     </FormGroup>
                     <Row>
                       <Col>
+                        <label>First Name</label>
                         <FormGroup
                           className={classnames({
                             focused: this.state.focusedFirstName
@@ -643,6 +651,7 @@ class RegisterPage extends Component {
                         </FormGroup>
                       </Col>
                       <Col>
+                        <label>Last Name</label>
                         <FormGroup
                           className={classnames({
                             focused: this.state.focusedLastName
@@ -697,6 +706,7 @@ class RegisterPage extends Component {
                         focused: this.state.focusedAddress
                       })}
                     >
+                      <label>Address</label>
                       <InputGroup className="input-group-merge input-group-alternative">
                         <Input
                           placeholder={"Address"}
@@ -726,6 +736,7 @@ class RegisterPage extends Component {
                     </FormGroup>
                     <Row>
                       <Col xs="3">
+                        <label>ID Type</label>
                         <Input
                           placeholder={"ID Type"}
                           type="select"
@@ -744,6 +755,7 @@ class RegisterPage extends Component {
                       </Col>
 
                       <Col xs="9">
+                        <label>ID Number</label>
                         <FormGroup
                           className={classnames({
                             focused: this.state.focusedIdentityNumber
