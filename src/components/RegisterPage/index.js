@@ -844,7 +844,7 @@ class RegisterPage extends Component {
                             alt=""
                             class="upload-button-icon"
                           ></img>
-                          <span class="upload-btn">Upload file(s)</span>
+                          <span class="upload-btn">Upload</span>
                           <Input
                             type="file"
                             name="identityCardFile"
@@ -882,7 +882,7 @@ class RegisterPage extends Component {
                             alt=""
                             class="upload-button-icon"
                           ></img>
-                          <span class="upload-btn">Upload file(s)</span>
+                          <span class="upload-btn">Upload</span>
 
                           <Input
                             type="file"
