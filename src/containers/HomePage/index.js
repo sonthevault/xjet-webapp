@@ -92,14 +92,17 @@ class HomePage extends Component {
 
           <Row>
             <Col sm="12" md={{ size: 6, offset: 6 }}>
-              <div className={styles.applyButton} onClick={this.onApplyButtonClick}>
+              <div
+                className={styles.applyButton}
+                onClick={this.onApplyButtonClick}
+              >
                 <div className={styles.applyButtonText}>Register Here</div>
               </div>
             </Col>
           </Row>
 
           <Row>
-            <Col style={{ padding: "10px" }}></Col>
+            <Col style={{ padding: "40px" }}></Col>
           </Row>
         </Container>
       </div>

@@ -17,6 +17,7 @@
   left: 0;
   overflow: scroll;
   background-image: url("../../assets/img/background.jpg");
+  -webkit-overflow-scrolling: touch;
 }
 
 .icon {
@@ -73,16 +74,16 @@ li {
 }
 
 .applyButtonText {
-    display: inline-block;
-    width: 180px;
-    font-size: 20x;
-    font-weight: 900;
-    font-stretch: normal;
-    font-style: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #004e87;
-    text-align: center;
+  display: inline-block;
+  width: 180px;
+  font-size: 20x;
+  font-weight: 900;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: #004e87;
+  text-align: center;
 }
 
 .title {
