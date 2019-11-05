@@ -158,7 +158,7 @@ class RegisterPage extends Component {
   onBirthdayChangeHandler = e => {
     const { setFieldValue } = this.props.formik;
 
-    if (e && (typeof e.format === "function")) {
+    if (e && typeof e.format === "function") {
       const selectedDate = e.format("MM-DD-YYYY");
       console.log("onBirthdayChangeHandler", selectedDate);
       this.setState({
@@ -260,7 +260,6 @@ class RegisterPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-
 
                     <label>Confirm password</label>
                     <FormGroup
@@ -859,13 +858,26 @@ class RegisterPage extends Component {
                         <p>2. National ID</p>
                         <p>3. Drivers License</p>
                         <br />
+                      </Col>
+                      <Col xs="6">
+                        <strong>
+                          Proof of Address (Must be not more than 3 months old)
+                        </strong>
+                        <p>Choose from either:</p>
+                        <p>1. Utility Bill</p>
+                        <p>2. Telephone Bill</p>
+                        <p>3. Bank Statement</p>
+                        <br />
+                      </Col>
+                    </Row>
 
+                    <Row>
+                      <Col xs="6">
                         {this.state.identityCardFile && (
-                          <Media
-                            width="75%"
-                            object
+                          <img
+                            class="preview-image"
                             src={this.state.identityCardFile}
-                            alt="Generic placeholder image"
+                            alt="Identity document"
                           />
                         )}
 
@@ -894,24 +906,13 @@ class RegisterPage extends Component {
                         </div>
                       </Col>
                       <Col xs="6">
-                        <strong>
-                          Proof of Address (Must be not more than 3 months old)
-                        </strong>
-                        <p>Choose from either:</p>
-                        <p>1. Utility Bill</p>
-                        <p>2. Telephone Bill</p>
-                        <p>3. Bank Statement</p>
-                        <br />
-
-                        {this.state.proofOfAddressFile && (
-                          <Media
-                            width="75%"
-                            object
-                            src={this.state.proofOfAddressFile}
-                            alt="Generic placeholder image"
-                          />
-                        )}
-
+                          {this.state.proofOfAddressFile && (
+                            <img
+                              class="preview-image"
+                              src={this.state.proofOfAddressFile}
+                              alt="Address document"
+                            />
+                          )}
                         <div class="upload-button-container">
                           <LoadingButton
                             color={"#000b33"}

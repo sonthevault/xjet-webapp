@@ -9,7 +9,6 @@
   position: relative;
   overflow: hidden;
   display: inline-block;
-  border: solid 2px #ffffff;
   background-color: #000b33;
   text-align: center;
 }
@@ -31,7 +30,7 @@
   padding: 8px;
 }
 
-.upload-button-container input[type=file] {
+.upload-button-container input[type="file"] {
   font-size: 100px;
   position: absolute;
   left: 0;
@@ -39,3 +38,9 @@
   opacity: 0;
 }
 
+.preview-image {
+  width: 50%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
