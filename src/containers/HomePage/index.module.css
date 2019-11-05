@@ -9,9 +9,14 @@
   vertical-align: middle;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: -999;
+  top: 0;
+  left: 0;
+  overflow:scroll;
   background-image: url("../../assets/img/background.jpg");
-  min-height: 1800px;
 }
 
 .icon {
