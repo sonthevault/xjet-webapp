@@ -132,7 +132,7 @@ class SignUpPageContainer extends Component {
                   this.setState({
                     status: "success",
                     message:
-                      "Your registration submitted successfully, We will update your registration status after process KYC in a week."
+                      "Your registration has been submitted successfully. We will confirm your registration status after processing KYC documents in the next 5-7 business days"
                   });
                   window.scrollTo(0, 0);
                   break;
