@@ -59,6 +59,13 @@ class RegisterPage extends Component {
 
     if (event.target.files[0]) {
       const file = event.target.files[0];
+      const fileSizeInMB = Math.floor(Number(file.size) / 1024 / 1024);
+      this.props.formik.setFieldError("identityCardPicture", null);
+      if (fileSizeInMB > 10) {
+        this.props.formik.setFieldError("identityCardPicture", "Maximum upload file size is 10MB")
+        return;
+      }
+      
       const data = new FormData();
       data.append("file", file);
       data.append("name", file.name);
@@ -131,6 +138,13 @@ class RegisterPage extends Component {
 
     if (event.target.files[0]) {
       const file = event.target.files[0];
+      const fileSizeInMB = Math.floor(Number(file.size) / 1024 / 1024);
+      this.props.formik.setFieldError("proofOfAddressPicture", null);
+      if (fileSizeInMB > 10) {
+        this.props.formik.setFieldError("proofOfAddressPicture", "Maximum upload file size is 10MB")
+        return;
+      }
+
       const data = new FormData();
       data.append("file", file);
       data.append("name", file.name);
@@ -904,15 +918,20 @@ class RegisterPage extends Component {
                             value={values["identityCardPicture"]}
                           ></Input>
                         </div>
+                        {errors.identityCardPicture && (
+                          <div class="invalid-feedback">
+                            {errors.identityCardPicture}
+                          </div>
+                        )}
                       </Col>
                       <Col xs="6">
-                          {this.state.proofOfAddressFile && (
-                            <img
-                              class="preview-image"
-                              src={this.state.proofOfAddressFile}
-                              alt="Address document"
-                            />
-                          )}
+                        {this.state.proofOfAddressFile && (
+                          <img
+                            class="preview-image"
+                            src={this.state.proofOfAddressFile}
+                            alt="Address document"
+                          />
+                        )}
                         <div class="upload-button-container">
                           <LoadingButton
                             color={"#000b33"}
@@ -937,6 +956,12 @@ class RegisterPage extends Component {
                             value={values["proofOfAddressPicture"]}
                           ></Input>
                         </div>
+
+                        {errors.proofOfAddressPicture && (
+                          <div class="invalid-feedback">
+                            {errors.proofOfAddressPicture}
+                          </div>
+                        )}
                       </Col>
                     </Row>
                     <br />
