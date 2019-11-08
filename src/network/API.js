@@ -48,6 +48,11 @@ API.register = body => {
   return API.instance.post("auth/register", body);
 };
 
+API.createOrder = body => {
+  return API.instance.post("orders", body);
+};
+
+
 API.upload = body => {
   const instance = axios.create({
     baseURL: BASE_URL,

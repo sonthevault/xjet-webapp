@@ -36,6 +36,10 @@ const SignUpPage = asyncComponent(() => {
   return import("./containers/SignUpPage/Loadable");
 });
 
+const OrderPage = asyncComponent(() => {
+  return import("./containers/OrderPage/Loadable");
+});
+
 const DashBoard = asyncComponent(() => {
   return import("./containers/DashBoard/Loadable");
 });
@@ -53,9 +57,10 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" component={OrderPage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
+        <Route path="/order" component={OrderPage} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/admin" render={props => <DashBoard {...props} />} />
