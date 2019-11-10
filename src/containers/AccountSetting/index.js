@@ -35,10 +35,10 @@ class AccountSettingContainer extends Component {
     return (
       <Formik
         initialValues={{
-          company: user.company || "",
+          username: user.username || "",
           email: user.email || "",
-          contactNumber: user.contactNumber || "",
-          address: user.address || ""
+          phone: user.phone || "",
+          createdAt: user.createdAt || "",
         }}
         validateOnChange={false}
         validateOnBlur={false}
@@ -55,26 +55,26 @@ class AccountSettingContainer extends Component {
         onSubmit={(values, { setSubmitting }) => {
           this.setState({ message: "" });
 
-          this.props.updateUser({userId: user.id, body: values}, response => {
-            setSubmitting(false);
+          // this.props.updateUser({userId: user.id, body: values}, response => {
+          //   setSubmitting(false);
 
-            switch (response.status) {
-              case 200:
-                this.setState({
-                  status: "success",
-                  message: "Saved successfully"
-                });
-                break;
-              case 400:
-                this.setState({
-                  status: "danger",
-                  message: "Invalid username or password"
-                });
-                break;
-              default:
-                break;
-            }
-          });
+          //   switch (response.status) {
+          //     case 200:
+          //       this.setState({
+          //         status: "success",
+          //         message: "Saved successfully"
+          //       });
+          //       break;
+          //     case 400:
+          //       this.setState({
+          //         status: "danger",
+          //         message: "Invalid username or password"
+          //       });
+          //       break;
+          //     default:
+          //       break;
+          //   }
+          // });
         }}
       >
         {formik => (

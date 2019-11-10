@@ -46,35 +46,53 @@ class AccountSetting extends Component {
 
     return (
       <>
-        <SimpleHeader name={t('title')} />
+        <SimpleHeader name={t("title")} />
         <Container className="mt--6" fluid>
           <Card>
             <CardHeader>
-              <h3 className="mb-0">{t('title')}</h3>
+              <h3 className="mb-0">{t("title")}</h3>
             </CardHeader>
             <CardBody>
               {message && <Alert color={status}>{message}</Alert>}
 
               <Form>
-                {/*  Field company name */}
-                <Row>
+              {/*  Sign up time */}
+              <Row>
                   <Col md="12">
+                    <label>Sign up date and time</label>
                     <FormGroup>
                       <InputGroup
                         className={classnames("input-group-merge", {
-                          focused: this.state.company
+                          focused: this.state.createdAt
                         })}
                       >
                         <Input
-                          placeholder={t("company-name")}
                           type="text"
-                          name="company"
-                          value={values["company"]}
-                          onFocus={e => this.setState({ company: true })}
-                          onBlur={e => this.setState({ company: false })}
-                          onChange={e => {
-                            setFieldValue("company", e.target.value);
-                          }}
+                          name="createdAt"
+                          value={values["createdAt"]}
+                          disabled
+                        />
+                      </InputGroup>
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+
+                {/*  Field user name */}
+                <Row>
+                  <Col md="12">
+                    <label>Username</label>
+                    <FormGroup>
+                      <InputGroup
+                        className={classnames("input-group-merge", {
+                          focused: this.state.username
+                        })}
+                      >
+                        <Input
+                          type="text"
+                          name="username"
+                          value={values["username"]}
+                          disabled
                         />
                       </InputGroup>
                     </FormGroup>
@@ -84,6 +102,7 @@ class AccountSetting extends Component {
                 {/*  Field email */}
                 <Row>
                   <Col md="12">
+                    <label>Email</label>
                     <FormGroup>
                       <InputGroup
                         className={classnames("input-group-merge", {
@@ -91,15 +110,10 @@ class AccountSetting extends Component {
                         })}
                       >
                         <Input
-                          placeholder={t("email")}
                           type="text"
                           name="email"
                           value={values["email"]}
-                          onFocus={e => this.setState({ email: true })}
-                          onBlur={e => this.setState({ email: false })}
-                          onChange={e => {
-                            setFieldValue("email", e.target.value);
-                          }}
+                          disabled
                         />
                       </InputGroup>
                       {errors.email && (
@@ -112,6 +126,7 @@ class AccountSetting extends Component {
                 {/*  Field contact number */}
                 <Row>
                   <Col md="12">
+                    <label>Mobile Number</label>
                     <FormGroup>
                       <InputGroup
                         className={classnames("input-group-merge", {
@@ -119,53 +134,15 @@ class AccountSetting extends Component {
                         })}
                       >
                         <Input
-                          placeholder={t("contact-number")}
                           type="text"
-                          name="contactNumber"
-                          value={values["contactNumber"]}
-                          onFocus={e => this.setState({ contactNumber: true })}
-                          onBlur={e => this.setState({ contactNumber: false })}
-                          onChange={e => {
-                            setFieldValue("contactNumber", e.target.value);
-                          }}
+                          name="phone"
+                          value={values["phone"]}
+                          disabled
                         />
                       </InputGroup>
                     </FormGroup>
                   </Col>
                 </Row>
-
-                {/*  Field address */}
-                <Row>
-                  <Col md="12">
-                    <FormGroup>
-                      <InputGroup
-                        className={classnames("input-group-merge", {
-                          focused: this.state.address
-                        })}
-                      >
-                        <Input
-                          placeholder={t("address")}
-                          type="text"
-                          name="address"
-                          value={values["address"]}
-                          onFocus={e => this.setState({ address: true })}
-                          onBlur={e => this.setState({ address: false })}
-                          onChange={e => {
-                            setFieldValue("address", e.target.value);
-                          }}
-                        />
-                      </InputGroup>
-                    </FormGroup>
-                  </Col>
-                </Row>
-                <Button
-                  color="primary"
-                  type="button"
-                  disabled={isSubmitting}
-                  onClick={submitForm}
-                >
-                  {t("submit-button-title")}
-                </Button>
               </Form>
             </CardBody>
           </Card>
