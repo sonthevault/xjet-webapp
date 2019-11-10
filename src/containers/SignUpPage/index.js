@@ -95,7 +95,7 @@ class SignUpPageContainer extends Component {
                   this.setState({
                     status: "success",
                     message:
-                      "Your registration has been submitted successfully. We will confirm your registration status after processing KYC documents in the next 5-7 business days"
+                      "Your registration has been submitted successfully. Please check your email to activate your account"
                   });
                   window.scrollTo(0, 0);
                   break;
@@ -111,6 +111,7 @@ class SignUpPageContainer extends Component {
                       message: "Email is already existed"
                     });
                   }
+                  window.scrollTo(0, 0);
                   break;
                 default:
                   break;
