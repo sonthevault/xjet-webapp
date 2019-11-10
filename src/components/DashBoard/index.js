@@ -15,6 +15,14 @@ class DashBoard extends Component {
   componentDidMount() {
     document.body.classList.add("g-sidenav-pinned");
     document.body.classList.remove("g-sidenav-hidden");
+
+    if (this.isMobileBrowser()) {
+      document.body.classList.remove("g-sidenav-pinned");
+      document.body.classList.add("g-sidenav-hidden");
+      this.setState({
+        sidenavOpen: false
+      })
+    }
   }
 
   componentDidUpdate(e) {
@@ -42,6 +50,22 @@ class DashBoard extends Component {
   getBrandText = () => {
     return "The Vault";
   };
+
+  isMobileBrowser = () => { 
+    if( navigator.userAgent.match(/Android/i)
+    || navigator.userAgent.match(/webOS/i)
+    || navigator.userAgent.match(/iPhone/i)
+    || navigator.userAgent.match(/iPad/i)
+    || navigator.userAgent.match(/iPod/i)
+    || navigator.userAgent.match(/BlackBerry/i)
+    || navigator.userAgent.match(/Windows Phone/i)
+    ){
+       return true;
+     }
+    else {
+       return false;
+     }
+   }
 
   // toggles collapse between mini sidenav and normal
   toggleSidenav = e => {

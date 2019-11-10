@@ -173,20 +173,6 @@ class Sidebar extends React.Component {
               />
             </NavbarBrand>
           ) : null}
-          <div className="ml-auto">
-            <div
-              className={classnames("sidenav-toggler d-none d-xl-block", {
-                active: this.props.sidenavOpen
-              })}
-              onClick={this.props.toggleSidenav}
-            >
-              <div className="sidenav-toggler-inner">
-                <i className="sidenav-toggler-line" />
-                <i className="sidenav-toggler-line" />
-                <i className="sidenav-toggler-line" />
-              </div>
-            </div>
-          </div>
         </div>
         <div className="navbar-inner">
           <Collapse navbar isOpen={true}>
