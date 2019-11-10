@@ -30,7 +30,7 @@ class IndexHeader extends React.Component {
                       <Button
                         className="btn-neutral my-2"
                         color="default"
-                        to="/admin/dashboard"
+                        to="/user/dashboard"
                         tag={Link}
                       >
                         Explore Dashboard

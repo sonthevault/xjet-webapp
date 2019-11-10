@@ -52,7 +52,7 @@ class AdminNavbar extends React.Component {
               <div className="navbar-collapse-header">
                 <Row>
                   <Col className="collapse-brand" xs="6">
-                    <Link to="/admin/dashboard">
+                    <Link to="/user/dashboard">
                       <img
                         alt="..."
                         src={require("assets/img/brand/blue.png")}
@@ -78,7 +78,7 @@ class AdminNavbar extends React.Component {
               </div>
               <Nav className="mr-auto" navbar>
                 <NavItem>
-                  <NavLink to="/admin/dashboard" tag={Link}>
+                  <NavLink to="/user/dashboard" tag={Link}>
                     <span className="nav-link-inner--text">Dashboard</span>
                   </NavLink>
                 </NavItem>
