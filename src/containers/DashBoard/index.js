@@ -18,7 +18,7 @@ class DashBoardContainer extends Component {
   };
 
   onSettingItemClick = () => {
-    this.props.history.push("/admin/settings");
+    this.props.history.push("/user/profile");
   }
 
   render() {
