@@ -77,18 +77,18 @@ class LoginPageContainer extends Component {
 
     return (
       <Formik
-        initialValues={{ username: "", password: "" }}
+        initialValues={{ email: "", password: "" }}
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit
         validate={values => {
           let errors = {};
-          if (!values.username) {
-            errors.username = "Required";
+          if (!values.email) {
+            errors.email = "Required";
           } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.username)
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
           ) {
-            // errors.email = "Invalid email address";
+            errors.email = "Invalid email address";
           }
 
           if (!values.password) {
@@ -115,8 +115,9 @@ class LoginPageContainer extends Component {
                 }, 1000);
                 break;
               case 400:
-                const message =
-                  path(["data", "error", "message"], response) ||
+              case 401:
+                let message =
+                  path(["data", "message"], response) ||
                   "Invalid username or password";
                 this.setState({
                   status: "danger",

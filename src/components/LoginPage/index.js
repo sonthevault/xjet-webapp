@@ -66,52 +66,44 @@ class LoginPage extends Component {
               <Card className="bg-secondary border-0 mb-0">
                 <CardBody className="px-lg-5 py-lg-5">
                   <div className="text-center text-muted mb-4">
-                    <small>{t("login")}</small>
+                    <h2>{t("login")}</h2>
                   </div>
+                  <br />
                   <Form role="form">
                     <FormGroup
                       className={classnames("mb-3", {
                         focused: this.state.focusedEmail
                       })}
                     >
+                      <label>Email</label>
                       <InputGroup className="input-group-merge input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="fa fa-user" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
-                          invalid={errors.username ? true : false}
+                          invalid={errors.email ? true : false}
                           disabled={isSubmitting}
-                          placeholder="Username"
-                          type="username"
-                          name={"username"}
-                          value={values["username"]}
+                          type="email"
+                          name={"email"}
+                          value={values["email"]}
                           onChange={e => {
-                            setFieldValue("username", e.target.value);
+                            setFieldValue("email", e.target.value);
                           }}
                           onFocus={() => this.setState({ focusedEmail: true })}
                           onBlur={() => this.setState({ focusedEmail: false })}
                           onKeyDown={this.onKeyDown} 
                         />
-                        {errors.username && (
-                          <FormFeedback>{errors.username}</FormFeedback>
+                        {errors.email && (
+                          <FormFeedback>{errors.email}</FormFeedback>
                         )}
                       </InputGroup>
                     </FormGroup>
+
+                    <label>Password</label>
                     <FormGroup
                       className={classnames({
                         focused: this.state.focusedPassword
                       })}
                     >
                       <InputGroup className="input-group-merge input-group-alternative">
-                        <InputGroupAddon addonType="prepend">
-                          <InputGroupText>
-                            <i className="ni ni-lock-circle-open" />
-                          </InputGroupText>
-                        </InputGroupAddon>
                         <Input
-                          placeholder="Password"
                           type="password"
                           name={"password"}
                           invalid={errors.password ? true : false}
@@ -134,19 +126,6 @@ class LoginPage extends Component {
                         )}
                       </InputGroup>
                     </FormGroup>
-                    <div className="custom-control custom-control-alternative custom-checkbox">
-                      <input
-                        className="custom-control-input"
-                        id=" customCheckLogin"
-                        type="checkbox"
-                      />
-                      <label
-                        className="custom-control-label"
-                        htmlFor=" customCheckLogin"
-                      >
-                        <span className="text-muted">{t("remember-me")}</span>
-                      </label>
-                    </div>
 
 
                     <div className="text-center">
