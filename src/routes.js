@@ -2,6 +2,7 @@ import Tables from "./views/pages/tables/Tables.jsx";
 import AccountSetting from "./containers/AccountSetting";
 import OrderPage from "./containers/OrderPage";
 import SupportPage from "./containers/SupportPage";
+import LogoutPage from "./containers/LogoutPage";
 
 const routes = [
   {
@@ -23,6 +24,13 @@ const routes = [
     name: "Customer Support",
     icon: "fa fa-cog text-red",
     component: SupportPage,
+    layout: "/user"
+  },
+  {
+    path: "/logout",
+    name: "Logout",
+    icon: "fa fa-cog text-red",
+    component: LogoutPage,
     layout: "/user"
   },
 ];
