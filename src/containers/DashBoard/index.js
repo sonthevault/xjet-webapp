@@ -10,12 +10,30 @@ class DashBoardContainer extends Component {
     if (!this.props.isAuthenticated) {
       this.props.history.push("/");
     }
+    this.props.history.push("/user/profile");
+  }
+
+  openInNewTab  = (url) => {
+    var win = window.open(url, '_blank');
+    win.focus();
   }
 
   onLogoutClick = () => {
     this.props.logout();
     this.props.history.push("/");
   };
+
+  onSupportClick = () => {
+    this.openInNewTab("https://xjet.zendesk.com/");
+  }
+
+  onUserProfileClick = () => {
+    this.props.history.push("/user/profile");
+  }
+
+  onTokenClick = () => {
+    this.props.history.push("/user/token");
+  }
 
   onSettingItemClick = () => {
     this.props.history.push("/user/profile");
@@ -27,6 +45,9 @@ class DashBoardContainer extends Component {
       <DashBoard
         {...this.props}
         onLogoutClick={this.onLogoutClick}
+        onSupportClick={this.onSupportClick}
+        onTokenClick={this.onTokenClick}
+        onUserProfileClick={this.onUserProfileClick}
         user={user}
         onSettingItemClick={this.onSettingItemClick}
       />
