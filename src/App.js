@@ -36,8 +36,8 @@ const SignUpPage = asyncComponent(() => {
   return import("./containers/SignUpPage/Loadable");
 });
 
-const OrderPage = asyncComponent(() => {
-  return import("./containers/OrderPage/Loadable");
+const ConfirmationPage = asyncComponent(() => {
+  return import("./containers/EmailConfirmationPage/Loadable");
 });
 
 const DashBoard = asyncComponent(() => {
@@ -60,6 +60,7 @@ class App extends Component {
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
+        <Route path="/confirmation" component={ConfirmationPage} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
         <Route path="/user" render={props => <DashBoard {...props} />} />

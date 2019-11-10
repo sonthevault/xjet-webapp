@@ -52,6 +52,9 @@ API.createOrder = body => {
   return API.instance.post("orders", body);
 };
 
+API.confirmEmail = token => {
+  return API.instance.get(`/auth/confirmation/${token}`);
+};
 
 API.upload = body => {
   const instance = axios.create({
