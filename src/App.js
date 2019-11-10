@@ -60,10 +60,9 @@ class App extends Component {
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
-        <Route path="/order" component={OrderPage} />
         <Route path="/forgot-password" component={ForgotPassword} />
         <Route path="/reset-password" component={ResetPassword} />
-        <Route path="/admin" render={props => <DashBoard {...props} />} />
+        <Route path="/user" render={props => <DashBoard {...props} />} />
         <Redirect to="/" />
       </Switch>
     );
