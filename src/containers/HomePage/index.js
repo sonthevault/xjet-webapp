@@ -6,7 +6,13 @@ import { path } from "ramda";
 import styles from "./index.module.css";
 import { Container, Row, Col, Button } from "reactstrap";
 class HomePage extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/user");
+    } else {
+      this.props.history.push("/login");
+    }
+  }
 
   onApplyButtonClick = () => {
     this.props.history.push("/signup");
@@ -112,7 +118,7 @@ class HomePage extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: path(["auth", "data", "access_token"], state)
+    isAuthenticated: path(["auth", "data", "token", "accessToken"], state)
   };
 };
 

@@ -15,7 +15,7 @@ function* login(action) {
       yield put({
         type: types.USER_LOGIN_SUCCEEDED,
         data: {
-          ...pathOr({}, ['data', 'item'], response)
+          ...pathOr({}, ['data'], response)
         }
       });
     } else {

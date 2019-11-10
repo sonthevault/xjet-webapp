@@ -93,7 +93,7 @@ class AccountSettingContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    user: path(["auth", "data"], state)
+    user: path(["auth", "data", "user"], state)
   };
 };
 

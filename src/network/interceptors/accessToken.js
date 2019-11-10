@@ -5,7 +5,7 @@ import { path } from 'ramda';
 const AccessTokenInterceptor = {
   addAccessToken: config => {
     const state = store.getState();
-    const accessToken = path(['auth', 'data', 'access_token'], state);
+    const accessToken = path(['auth', 'data', "token", 'accessToken'], state);
 
     if (accessToken) {
       const headers = {

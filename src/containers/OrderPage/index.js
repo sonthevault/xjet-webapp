@@ -115,7 +115,8 @@ class OrderPageContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    loggedIn: false
+    loggedIn: false,
+    user: path(["auth", "data", "user"], state)
   };
 };
 

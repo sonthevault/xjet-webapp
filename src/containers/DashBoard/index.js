@@ -36,8 +36,8 @@ class DashBoardContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: path(["auth", "data", "access_token"], state),
-    user: path(["auth", "data"], state)
+    isAuthenticated: path(["auth", "data", "token", "accessToken"], state),
+    user: path(["auth", "data", "user",], state)
   };
 };
 
