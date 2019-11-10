@@ -14,23 +14,20 @@ class OrderPageContainer extends Component {
   state = {};
 
   componentDidMount() {
-    document.body.classList.add("bg-default");
-    // this.props.history.push("/signup");
   }
 
   componentWillUnmount() {
-    document.body.classList.remove("bg-default");
   }
 
   render() {
-    const { t } = this.props;
+    const { t, user } = this.props;
     const { status, message } = this.state;
 
     return (
       <Formik
         initialValues={{
-          email: "",
-          userId: "",
+          email: user.email || "",
+          xjetUserId: "",
           senderUsdtAddress: "",
           amount: null,
         }}
@@ -47,8 +44,8 @@ class OrderPageContainer extends Component {
             errors.email = "Invalid email address";
           }
 
-          if (!values.userId) {
-            errors.userId = "Required";
+          if (!values.xjetUserId) {
+            errors.xjetUserId = "Required";
           }
 
           if (!values.senderUsdtAddress) {
@@ -86,10 +83,15 @@ class OrderPageContainer extends Component {
                   window.scrollTo(0, 0);
                   break;
                 case 400:
+                case 401:
+                  let message =
+                  path(["data", "message"], response) ||
+                  "An error has been occurred. Please contact us";
                   this.setState({
                       status: "danger",
-                      message: "An error has been occurred. Please contact us"
+                      message: message
                     });
+                  window.scrollTo(0, 0);
                   break;
                 default:
                   break;
