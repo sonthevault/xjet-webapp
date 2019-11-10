@@ -22,6 +22,10 @@ class SignUpPageContainer extends Component {
     document.body.classList.remove("bg-default");
   }
 
+  onNavigationSignInClick = () => {
+    this.props.history.push("/login");
+  }
+
   render() {
     const { t } = this.props;
     const { status, message } = this.state;
@@ -32,16 +36,8 @@ class SignUpPageContainer extends Component {
           email: "",
           password: "",
           confirmationPassword: "",
-          gender: "male",
-          address: "",
-          nationality: "",
-          firstName: "",
-          lastName: "",
-          birthday: "",
-          identityNumber: "",
-          identityType: "passport",
-          identityCardPicture: "",
-          proofOfAddressPicture: ""
+          username: "",
+          phone: "",
         }}
         validateOnChange={false}
         validateOnBlur={false}
@@ -68,55 +64,22 @@ class SignUpPageContainer extends Component {
             errors.confirmationPassword = "Password not matched";
           }
 
-          if (!values.nationality) {
-            errors.toc = "Required";
+          if (!values.username) {
+            errors.username = "Required";
           }
 
-          if (!values.firstName) {
-            errors.firstName = "Required";
+          if (!values.phone) {
+            errors.phone = "Required";
           }
 
-          if (!values.lastName) {
-            errors.lastName = "Required";
-          }
-
-          if (!values.identityNumber) {
-            errors.identityNumber = "Required";
-          }
-
-          if (!values.identityCardPicture) {
-            errors.identityCardPicture = "Required";
-          }
-
-          if (!values.proofOfAddressPicture) {
-            errors.proofOfAddressPicture = "Required";
-          }
-
-          // if (!values.toc) {
-          //   errors.toc = "Required";
-          // }
-
-          console.log(errors);
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
           const body = {
             email: values["email"],
+            username: values["username"],
+            phone: values["phone"],
             password: values["password"],
-            personalInfo: {
-              firstName: values["firstName"],
-              lastName: values["lastName"],
-              address: values["address"],
-              identityNumber: values["identityNumber"],
-              identityType: values["identityType"],
-              nationality: values["nationality"],
-              gender: values["gender"],
-              birthday: values["birthday"]
-            },
-            documents: {
-              identityPicture: values["identityCardPicture"],
-              proofOfAddressPicture: values["proofOfAddressPicture"]
-            }
           };
 
           this.setState({ message: "" });
@@ -164,6 +127,7 @@ class SignUpPageContainer extends Component {
             t={t}
             status={status}
             message={message}
+            onNavigationSignInClick={this.onNavigationSignInClick}
           />
         )}
       </Formik>

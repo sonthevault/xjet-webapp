@@ -57,7 +57,7 @@ class App extends Component {
   render() {
     return (
       <Switch>
-        <Route exact path="/" component={OrderPage} />
+        <Route exact path="/" component={HomePage} />
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/order" component={OrderPage} />
