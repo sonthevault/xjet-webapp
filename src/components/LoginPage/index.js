@@ -24,14 +24,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 class LoginPage extends Component {
   state = {};
 
-  onKeyDown = (e) => {
-    const {
-      submitForm,
-    } = this.props.formik;
-    if (e.key === 'Enter') {
+  onKeyDown = e => {
+    const { submitForm } = this.props.formik;
+    if (e.key === "Enter") {
       submitForm();
     }
-  }
+  };
 
   render() {
     const {
@@ -60,9 +58,7 @@ class LoginPage extends Component {
         <Container className="mt--8 pb-5">
           <Row className="justify-content-center">
             <Col lg="5" md="7">
-              {message && <Alert color={status}>
-                {message}
-              </Alert>}
+              {message && <Alert color={status}>{message}</Alert>}
               <Card className="bg-secondary border-0 mb-0">
                 <CardBody className="px-lg-5 py-lg-5">
                   <div className="text-center text-muted mb-4">
@@ -88,7 +84,7 @@ class LoginPage extends Component {
                           }}
                           onFocus={() => this.setState({ focusedEmail: true })}
                           onBlur={() => this.setState({ focusedEmail: false })}
-                          onKeyDown={this.onKeyDown} 
+                          onKeyDown={this.onKeyDown}
                         />
                         {errors.email && (
                           <FormFeedback>{errors.email}</FormFeedback>
@@ -119,7 +115,7 @@ class LoginPage extends Component {
                               focusedPassword: false
                             })
                           }
-                          onKeyDown={this.onKeyDown} 
+                          onKeyDown={this.onKeyDown}
                         />
                         {errors.password && (
                           <FormFeedback>{errors.password}</FormFeedback>
@@ -127,41 +123,28 @@ class LoginPage extends Component {
                       </InputGroup>
                     </FormGroup>
 
+                    <Row>
+                      <Col>
+                        <Button
+                          block
+                          color="info"
+                          type="button"
+                          onClick={submitForm}
+                          disabled={isSubmitting}
+                        >
+                          {t("sign-in")}
+                        </Button>
+                      </Col>
 
-                    <div className="text-center">
-                      <Button
-                        className="my-4"
-                        color="info"
-                        type="button"
-                        onClick={submitForm}
-                        disabled={isSubmitting}
-                      >
-                        {t("sign-in")}
-                      </Button>
-                    </div>
+                      <Col>
+                        <Button color="link" onClick={onClickCreateNewAccount}>
+                          <u>{t("create-new-account")}</u>
+                        </Button>
+                      </Col>
+                    </Row>
                   </Form>
                 </CardBody>
               </Card>
-              <Row className="mt-3">
-                <Col xs="6">
-                  <Button
-                    color="link"
-                    className="text-light"
-                    onClick={onClickForgotPassword}
-                  >
-                    {t("forgot-password")}
-                  </Button>
-                </Col>
-                <Col className="text-right" xs="6">
-                  <Button
-                    color="link"
-                    className="text-light"
-                    onClick={onClickCreateNewAccount}
-                  >
-                    {t("create-new-account")}
-                  </Button>
-                </Col>
-              </Row>
             </Col>
           </Row>
         </Container>
