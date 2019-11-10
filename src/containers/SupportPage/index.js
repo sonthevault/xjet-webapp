@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { compose } from "recompose";
 
-class OrderPageContainer extends Component {
+class SupportPageContainer extends Component {
   state = {};
 
   openInNewTab  = (url) => {
@@ -27,4 +27,4 @@ class OrderPageContainer extends Component {
 export default compose(
   withNamespaces("order", { wait: true }),
   withRouter,
-)(OrderPageContainer);
+)(SupportPageContainer);
