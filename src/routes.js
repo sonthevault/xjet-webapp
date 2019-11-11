@@ -22,7 +22,7 @@ const routes = [
   },
   {
     path: "/token",
-    name: "Token",
+    name: "Token Purchase",
     icon: "fa fa-cog text-red",
     component: OrderPage,
     layout: "/user"
