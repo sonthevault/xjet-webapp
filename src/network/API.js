@@ -52,6 +52,15 @@ API.createOrder = body => {
   return API.instance.post("orders", body);
 };
 
+API.getOrder = () => {
+  return API.instance.get("orders");
+};
+
+API.updateOrder = (body) => {
+  return API.instance.put("orders", body);
+};
+
+
 API.confirmEmail = token => {
   return API.instance.get(`/auth/confirmation/${token}`);
 };

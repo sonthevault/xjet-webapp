@@ -37,41 +37,46 @@ class OrderPage extends Component {
     }
   };
 
-  convertMedbToBTC = (amount) => {
+  convertMedbToBTC = amount => {
     if (!amount || isNaN(amount)) {
       this.setState({
         btcAmount: 0
-      })
+      });
       return;
     }
 
     const medbAmount = parseInt(amount);
-    const btcAmount = parseFloat(Math.round((medbAmount / 10000 * 0.01) * 100) / 100).toFixed(2)
-    this.setState({btcAmount})
-  }
+    const btcAmount = parseFloat(
+      Math.round((medbAmount / 10000) * 0.01 * 100) / 100
+    ).toFixed(2);
+    this.setState({ btcAmount });
+  };
 
-  addCommas = (nStr) => {
-    nStr += '';
-    var x = nStr.split('.');
+  addCommas = nStr => {
+    nStr += "";
+    var x = nStr.split(".");
     var x1 = x[0];
-    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var x2 = x.length > 1 ? "." + x[1] : "";
     var rgx = /(\d+)(\d{3})/;
     while (rgx.test(x1)) {
-            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+      x1 = x1.replace(rgx, "$1" + "," + "$2");
     }
     return x1 + x2;
-}
+  };
 
   render() {
-    const { formik, t, status, message } = this.props;
+    const { formik, t, status, message, orderData, updateOrder } = this.props;
 
-    const {
-      isSubmitting,
-      errors,
-      submitForm,
-      values,
-      setFieldValue
-    } = formik;
+    console.log("orderData", orderData);
+    let orderStatus = "Waiting for transfer BTC";
+    if (orderData) {
+      orderStatus =
+        orderData.status === "pending"
+          ? "Waiting for transfer BTC"
+          : "Confirmed";
+    }
+
+    const { isSubmitting, errors, submitForm, values, setFieldValue } = formik;
 
     const { btcAmount } = this.state;
 
@@ -88,6 +93,7 @@ class OrderPage extends Component {
             <CardBody>
               {message && <Alert color={status}>{message}</Alert>}
               {/* ======================== Start Personal Details PART ==========================*/}
+              {orderData && <h2>{`Order Status: ${orderStatus}`}</h2>}
               <h2>1. User Info</h2>
               <Form role="form">
                 <label>1. Email</label>
@@ -182,7 +188,9 @@ class OrderPage extends Component {
                     </FormGroup>
                   </Col>
                   <Col>
-                        <span class="align-middle">MEDB = <span>{this.addCommas(btcAmount)}BTC</span></span>
+                    <span class="align-middle">
+                      MEDB = <span>{this.addCommas(btcAmount)}BTC</span>
+                    </span>
                   </Col>
                 </Row>
 
@@ -233,17 +241,68 @@ class OrderPage extends Component {
                 </FormGroup>
 
                 <br />
-                <div>
-                  <Button
-                    className="mt-4"
-                    color="info"
-                    type="button"
-                    onClick={submitForm}
-                    disabled={isSubmitting}
-                  >
-                    Order
-                  </Button>
-                </div>
+                {orderData ? (
+                  <>
+                    <h2>
+                      Pls, transfer 0.01 BTC to Bloodlink Bitcoin wallet address
+                      and update bitcoin transaction number as below:
+                    </h2>
+                    <label>Bitcoin transaction number</label>
+                    <FormGroup
+                      className={classnames({
+                        focused: this.state.focusedUserId
+                      })}
+                    >
+                      <InputGroup className="input-group-merge input-group-alternative">
+                        <Input
+                          placeholder={"BTC Transaction Hash"}
+                          type="text"
+                          name={"txHash"}
+                          value={values["txHash"]}
+                          onChange={e => {
+                            setFieldValue("txHash", e.target.value);
+                          }}
+                          onFocus={() => this.setState({ focusedTxHash: true })}
+                          onBlur={() =>
+                            this.setState({
+                              focusedTxHash: false
+                            })
+                          }
+                          invalid={errors.txHash ? true : false}
+                          disabled={isSubmitting}
+                          onKeyDown={this.onKeyDown}
+                        />
+
+                        {errors.txHash && (
+                          <FormFeedback>{errors.txHash}</FormFeedback>
+                        )}
+                      </InputGroup>
+                    </FormGroup>
+                    <div>
+                      <Button
+                        className="mt-4"
+                        color="info"
+                        type="button"
+                        onClick={() => updateOrder(values["txHash"])}
+                        disabled={isSubmitting}
+                      >
+                        Update
+                      </Button>
+                    </div>
+                  </>
+                ) : (
+                  <div>
+                    <Button
+                      className="mt-4"
+                      color="info"
+                      type="button"
+                      onClick={submitForm}
+                      disabled={isSubmitting}
+                    >
+                      Order
+                    </Button>
+                  </div>
+                )}
               </Form>
             </CardBody>
           </Card>

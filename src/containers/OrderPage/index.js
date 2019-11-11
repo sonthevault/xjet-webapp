@@ -14,23 +14,53 @@ class OrderPageContainer extends Component {
   state = {};
 
   componentDidMount() {
+    this.getOrder()
   }
 
-  componentWillUnmount() {
-  }
+  componentWillUnmount() {}
+
+  updateOrder = txHash => {
+    const body = {
+      txHash
+    };
+    API.updateOrder(body)
+      .then(response => {this.getOrder()})
+      .catch(error => {});
+  };
+
+  getOrder = () => {
+    API.getOrder()
+      .then(response => {
+        switch (response.status) {
+          case 200:
+            const orderData = path(["data", "order"], response);
+            this.setState({
+              orderData
+            });
+            break;
+          default:
+            break;
+        }
+      })
+      .catch(error => {});
+  };
 
   render() {
     const { t, user } = this.props;
-    const { status, message } = this.state;
+    const { status, message, orderData } = this.state;
+
+    console.log("render-orderData", orderData);
 
     return (
       <Formik
         initialValues={{
           email: user.email || "",
-          xjetUserId: "",
-          senderBTCAddress: "",
-          amount: null,
+          xjetUserId: orderData ? orderData.xjetUserId : "",
+          senderBTCAddress: orderData ? orderData.senderBTCAddress : "",
+          amount: orderData ? orderData.amount : null,
+          txHash: orderData ? orderData.txHash : ""
         }}
+        enableReinitialize={true}
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit
@@ -77,20 +107,19 @@ class OrderPageContainer extends Component {
                 case 201:
                   this.setState({
                     status: "success",
-                    message:
-                      "Your order has been submitted successfully."
+                    message: "Your order has been submitted successfully."
                   });
                   window.scrollTo(0, 0);
                   break;
                 case 400:
                 case 401:
                   let message =
-                  path(["data", "message"], response) ||
-                  "An error has been occurred. Please contact us";
+                    path(["data", "message"], response) ||
+                    "An error has been occurred. Please contact us";
                   this.setState({
-                      status: "danger",
-                      message: message
-                    });
+                    status: "danger",
+                    message: message
+                  });
                   window.scrollTo(0, 0);
                   break;
                 default:
@@ -108,6 +137,8 @@ class OrderPageContainer extends Component {
             t={t}
             status={status}
             message={message}
+            orderData={orderData}
+            updateOrder={this.updateOrder}
           />
         )}
       </Formik>
