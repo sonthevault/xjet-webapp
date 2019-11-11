@@ -109,7 +109,9 @@ class OrderPageContainer extends Component {
                   });
                   window.scrollTo(0, 0);
 
-                  window.location.reload();
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 1000);
                   break;
                 case 400:
                 case 401:

@@ -26,10 +26,6 @@ import "./index.css";
 class OrderPage extends Component {
   state = {};
 
-  componentDidMount = () => {
-    this.convertMedbToBTC();
-  };
-
   onKeyDown = e => {
     const { submitForm } = this.props.formik;
     if (e.key === "Enter") {
@@ -39,17 +35,14 @@ class OrderPage extends Component {
 
   convertMedbToBTC = amount => {
     if (!amount || isNaN(amount)) {
-      this.setState({
-        btcAmount: 0
-      });
-      return;
+      return 0;
     }
 
     const medbAmount = parseInt(amount);
     const btcAmount = parseFloat(
       Math.round((medbAmount) * 0.01 * 100) / 100
     ).toFixed(2);
-    this.setState({ btcAmount });
+    return btcAmount;
   };
 
   addCommas = nStr => {
@@ -77,8 +70,6 @@ class OrderPage extends Component {
     }
 
     const { isSubmitting, errors, submitForm, values, setFieldValue } = formik;
-
-    const { btcAmount } = this.state;
 
     console.log("Formik-errors", errors);
 
@@ -174,7 +165,6 @@ class OrderPage extends Component {
                           value={values["amount"]}
                           onChange={e => {
                             setFieldValue("amount", e.target.value);
-                            this.convertMedbToBTC(e.target.value);
                           }}
                           onFocus={() => this.setState({ focusedAmount: true })}
                           onBlur={() =>
@@ -183,7 +173,7 @@ class OrderPage extends Component {
                             })
                           }
                           invalid={errors.amount ? true : false}
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || orderData}
                           onKeyDown={this.onKeyDown}
                         />
 
@@ -195,7 +185,7 @@ class OrderPage extends Component {
                   </Col>
                   <Col>
                     <span class="align-middle">
-                      {`x 10,000 MEDB = `}<span class="btcAmount">{`${this.addCommas(btcAmount)} BTC`}</span>
+                      {`x 10,000 MEDB = `}<span class="btcAmount">{`${this.addCommas(this.convertMedbToBTC(values["amount"]))} BTC`}</span>
                     </span>
                   </Col>
                 </Row>
@@ -249,8 +239,8 @@ class OrderPage extends Component {
                 {orderData ? (
                   <>
                     <h2>
-                      Pls, transfer 0.01 BTC to Bloodlink Bitcoin wallet address
-                      and update bitcoin transaction number as below:
+                      {`Please transfer ${this.addCommas(this.convertMedbToBTC(values["amount"]))} BTC to Bloodlink Bitcoin wallet address
+                      and update bitcoin transaction number as below:`}
                     </h2>
 
                     <label>Bitcoin transaction number</label>
