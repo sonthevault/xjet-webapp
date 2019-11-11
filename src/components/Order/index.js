@@ -285,6 +285,7 @@ class OrderPage extends Component {
                     <div>
                       <div>
                         <h2>Bloodlink BTC Address</h2>
+                        <div class="btc-wallet">3Gpx4EEY5GLYPGzySjYLtebcYB7UjouXP9</div>
                         <img
                           src={require("../../assets/img/btc_wallet_address.jpeg")}
                           alt="Bloodlink BTC Wallet Address"
@@ -305,6 +306,7 @@ class OrderPage extends Component {
                   <div>
                     <div>
                       <h2>Bloodlink BTC Address</h2>
+                        <div class="btc-wallet">3Gpx4EEY5GLYPGzySjYLtebcYB7UjouXP9</div>
                       <img
                         src={require("../../assets/img/btc_wallet_address.jpeg")}
                         alt="Bloodlink BTC Wallet Address"
