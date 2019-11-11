@@ -50,85 +50,80 @@ class Introduction extends Component {
               />
               <br />
               <br />
-              <p>
-                <strong>Bloodlink Blockchain Project token sale introduction</strong>
+              <p className={styles.headline}>
+                Bloodlink Blockchain Project token sale introduction
               </p>
-              <p>
-                <strong>
-                  Blockchain: Secure, Private and predictive data It's your
-                  health protect it with bloodlink
-                </strong>
+              <p className={styles.headline}>
+                Blockchain: Secure, Private and predictive data It's your health
+                protect it with bloodlink
               </p>
-              <p>
-                <strong>
-                  Everyday MEDB value will be change, Pls grab your opportunity
-                  today!!!
-                </strong>
+              <p className={styles.headline}>
+                Everyday MEDB value will be change, Pls grab your opportunity
+                today!!!
               </p>
 
               <br />
-              <Table responsive>
-                <tbody>
-                  <tr>
-                    <th scope="row">Project Name</th>
-                    <td>Bloodlink</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Token Name</th>
-                    <td>Medical platform for Blood data (Symbol: MEDB)</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Token Type</th>
-                    <td>
-                      Utility token in fluctuation value (Not Security, not
-                      stable token), ERC20 base
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Total amount issue</th>
-                    <td>4 billion tokens</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Private sales tokens</th>
-                    <td>200 million tokens</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Public sales tokens</th>
-                    <td>400 million tokens start on 11.November.2019</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Token distribution date</th>
-                    <td>3 days before listing on exchange</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Website</th>
-                    <td>https://www.bloodlink.io</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Whitepaper</th>
-                    <td>
-                      https://www.bloodlink.io/wp-content/uploads/2019/11/Bloodlink-v8.pdf
-                    </td>
-                  </tr>
-                  <tr>
-                    <th scope="row">Brief of Project</th>
-                    <td>
-                      Bloodlink is dedicated to providing a comprehensive range
-                      of cost effective blood testing solutions for the
-                      well-being of humanity. And importantly, at the centre of
-                      our belief is the premise, that prevention is better than
-                      dealing with the pain and suffering, and high costs
-                      associated with the treatment of chronic disease.
-                      Bloodlink believe that by marrying its patented medical
-                      diagnostic solution, together with a blockchain database
-                      and healthcare-focused ecosystem, we can save lives,
-                      improve healthcare processes and reduce unnecessary wasted
-                      cost and resources where everyone in the healthcare
-                      industry can benefit.
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
+              <div class="table-responsive">
+                <div>
+                  <label className={styles.label}>1. Project Name: &nbsp;</label>
+                  <span>Bloodlink</span>
+                </div>
+                <div>
+                  <label className={styles.label}>2. Token Name:  &nbsp;</label>
+                  <span>
+                    Medical platform for Blood data (Symbol: MEDB)
+                  </span>
+                </div>
+                <div>
+                  <label className={styles.label}>3. Token Type:  &nbsp;</label>
+                  <span>
+                    Utility token in fluctuation value (Not Security, not stable
+                    token), ERC20 base
+                  </span>
+                </div>
+                <div>
+                  <label className={styles.label}>4. Total amount issue:  &nbsp;</label>
+                  <span>4 billion tokens</span>
+                </div>
+                <div>
+                  <label className={styles.label}>5. Private sales tokens:  &nbsp;</label>
+                  <span>200 million tokens</span>
+                </div>
+                <div>
+                  <label className={styles.label}>6. Public sales tokens:  &nbsp;</label>
+                  <span>400 million tokens start on 11.November.2019</span>
+                </div>
+                <div>
+                  <label className={styles.label}>7. Token distribution date:  &nbsp;</label>
+                  <span>3 days before listing on exchange</span>
+                </div>
+                <div>
+                  <label className={styles.label}>8. Website:  &nbsp;</label>
+                  <span>https://www.bloodlink.io</span>
+                </div>
+                <div>
+                  <label className={styles.label}>9. Whitepaper:  &nbsp;</label>
+                  <span>
+                    https://www.bloodlink.io/wp-content/uploads/2019/11/Bloodlink-v8.pdf
+                  </span>
+                </div>
+                <div>
+                  <label className={styles.label}>10. Brief of Project:  &nbsp;</label>
+                  <span>
+                    Bloodlink is dedicated to providing a comprehensive range of
+                    cost effective blood testing solutions for the well-being of
+                    humanity. And importantly, at the centre of our belief is
+                    the premise, that prevention is better than dealing with the
+                    pain and suffering, and high costs associated with the
+                    treatment of chronic disease. Bloodlink believe that by
+                    marrying its patented medical diagnostic solution, together
+                    with a blockchain database and healthcare-focused ecosystem,
+                    we can save lives, improve healthcare processes and reduce
+                    unnecessary wasted cost and resources where everyone in the
+                    healthcare industry can benefit.
+                  </span>
+                </div>
+              </div>
             </CardBody>
           </Card>
         </Container>
