@@ -107,7 +107,7 @@ class OrderPage extends Component {
                   </InputGroup>
                 </FormGroup>
 
-                <label>2. User ID at XJET.IO</label>
+                <label>2. Registered User email address of XJET.io</label>
                 <FormGroup
                   className={classnames({
                     focused: this.state.focusedUserId
