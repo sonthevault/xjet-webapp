@@ -59,7 +59,7 @@ class LoginPage extends Component {
         <br />
         <Container className="mt--8 pb-5">
           <Row className="justify-content-center">
-            <Col xs={8} className={styles.leftCol}>
+            <Col xs={10} sm={8} md={8} lg={8} className={styles.leftCol}>
               <h1 className={styles.leftHeadText}>
                 Bloodlink project 'MEDB' Token Purchase Process
               </h1>
@@ -100,7 +100,7 @@ class LoginPage extends Component {
                 </div>
               </div>
             </Col>
-            <Col xs={4}>
+            <Col xs={10} sm={4} md={4} lg={4}>
               {message && <Alert color={status}>{message}</Alert>}
               <Card className="bg-secondary border-0 mb-0">
                 <CardBody className="px-lg-5 py-lg-5">
