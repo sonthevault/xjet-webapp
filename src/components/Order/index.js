@@ -45,6 +45,14 @@ class OrderPage extends Component {
     return btcAmount;
   };
 
+  getTotalMedb = amount => {
+    if (!amount || isNaN(amount)) {
+      return 0;
+    }
+    const medbAmount = parseInt(amount) * 10000;
+    return medbAmount;
+  }
+
   addCommas = nStr => {
     nStr += "";
     var x = nStr.split(".");
@@ -185,7 +193,7 @@ class OrderPage extends Component {
                   </Col>
                   <Col>
                     <span class="align-middle">
-                      {`x 10,000 MEDB = `}<span class="btcAmount">{`${this.addCommas(this.convertMedbToBTC(values["amount"]))} BTC`}</span>
+                      {`x 10,000 MEDB = `}<span class="btcAmount">{`${this.addCommas(this.getTotalMedb(values["amount"]))} MEDB = ${this.addCommas(this.convertMedbToBTC(values["amount"]))} BTC`}</span>
                     </span>
                   </Col>
                 </Row>
