@@ -10,7 +10,6 @@ class DashBoardContainer extends Component {
     if (!this.props.isAuthenticated) {
       this.props.history.push("/");
     }
-    this.props.history.push("/user/profile");
   }
 
   openInNewTab  = (url) => {
