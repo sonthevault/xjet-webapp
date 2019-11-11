@@ -104,8 +104,8 @@ class OrderPageContainer extends Component {
             errors.amount = "Amount must be a number";
           }
 
-          if (values.amount <= 0) {
-            errors.amount = "Amount must be greater than 0";
+          if (values.amount <= 2) {
+            errors.amount = "Minimum number of MEDB token purchase is 20,000 MEDB";
           }
 
           return errors;
