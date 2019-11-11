@@ -3,8 +3,16 @@ import AccountSetting from "./containers/AccountSetting";
 import OrderPage from "./containers/OrderPage";
 import SupportPage from "./containers/SupportPage";
 import LogoutPage from "./containers/LogoutPage";
+import IntroductionPage from "./containers/IntroductionPage";
 
 const routes = [
+  {
+    path: "/introduction",
+    name: "Project Introduction",
+    icon: "fa fa-cog text-red",
+    component: IntroductionPage,
+    layout: "/user"
+  },
   {
     path: "/profile",
     name: "User Profile",

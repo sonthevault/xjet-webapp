@@ -1,0 +1,8 @@
+.table {
+  word-break:break-all;
+}
+
+.row {
+  word-break:break-all;
+  border: 1px solid;
+}
