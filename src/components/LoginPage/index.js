@@ -56,10 +56,10 @@ class LoginPage extends Component {
     return (
       <>
         <AuthHeader title="XJET.IOn" lead="Admin dasboard" />
+        <br />
         <Container className="mt--8 pb-5">
-          <br />
           <Row className="justify-content-center">
-            <Col lg="auto" className={styles.leftCol}>
+            <Col xs={8} className={styles.leftCol}>
               <h1 className={styles.leftHeadText}>
                 Bloodlink project 'MEDB' Token Purchase Process
               </h1>
@@ -80,8 +80,27 @@ class LoginPage extends Component {
                 <div>Step 3.</div>
                 <div>Transfer BTC to Bloodlink BTC wallet address</div>
               </div>
+              <div>
+                <div>Bloodlinkプロジェクト「MEDB」トークン購入プロセス</div>
+                <br />
+                <div>ステップ1</div>
+                <div>
+                  XJET.ioでアカウントを登録し、身分証明書の写真の提出など、KYC手続きを行います。
+                </div>
+                <br />
+                <div>ステップ2</div>
+                <div>
+                  トークン注文ページで、トークン注文専用のアカウントを登録し、トークン注文フォームを提出します。
+                </div>
+                <br />
+                <div>ステップ3</div>
+                <div>
+                  トークン注文ページに掲載されている、Bloodlink
+                  BTCウォレットアドレスまで、BTCを送ります。
+                </div>
+              </div>
             </Col>
-            <Col lg="5" md="7">
+            <Col xs={4}>
               {message && <Alert color={status}>{message}</Alert>}
               <Card className="bg-secondary border-0 mb-0">
                 <CardBody className="px-lg-5 py-lg-5">
