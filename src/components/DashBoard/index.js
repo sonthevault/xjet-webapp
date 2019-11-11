@@ -107,7 +107,7 @@ class DashBoard extends Component {
           <Switch>{this.getRoutes(routes)}</Switch>
           <AdminFooter />
         </div>
-        <div className="backdrop d-xl-none" onClick={this.toggleSidenav} />
+        {/* <div className="backdrop d-xl-none" onClick={this.toggleSidenav} /> */}
       </>
     );
   }
