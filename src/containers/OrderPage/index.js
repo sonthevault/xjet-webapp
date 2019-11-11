@@ -14,7 +14,7 @@ class OrderPageContainer extends Component {
   state = {};
 
   componentDidMount() {
-    this.getOrder()
+    this.getOrder();
   }
 
   componentWillUnmount() {}
@@ -24,7 +24,23 @@ class OrderPageContainer extends Component {
       txHash
     };
     API.updateOrder(body)
-      .then(response => {this.getOrder()})
+      .then(response => {
+        switch (response.status) {
+          case 200:
+            this.setState({
+              status: "success",
+              message: "Bitcoin transaction hash has been updated successfully."
+            });
+            window.scrollTo(0, 0);
+
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
+            break;
+          default:
+            break;
+        }
+      })
       .catch(error => {});
   };
 
