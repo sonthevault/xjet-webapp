@@ -61,6 +61,13 @@
   font-size: 13px;
 }
 
+.highlight-red {
+  font-weight: 700;
+  line-height: 14px;
+  font-size: 13px;
+  color: red;
+}
+
 .instruction {
   font-weight: 500;
 }

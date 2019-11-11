@@ -153,6 +153,12 @@ class OrderPage extends Component {
                   How Many ‘MEDB’ Token Want To Buy? Example: 10,000 MEDB =
                   0.01BTC = 10,000 JPY
                 </label>
+                <div>
+                  <p class="highlight-red">
+                    Minimum number of MEDB token purchase is 20,000 MEDB
+                    (=0.02BTC)
+                  </p>
+                </div>
                 <Row>
                   <Col>
                     <FormGroup
@@ -198,9 +204,7 @@ class OrderPage extends Component {
                 <h2>3. User’s Bitcoin Wallet Address</h2>
 
                 <label>
-                  Pls, fill up your bitcoin wallet address below input field.
-                </label>
-                <label>
+                  Please fill up your bitcoin wallet address below input field.
                   Once we receive bitcoin amount from your bitcoin address will
                   update purchase status
                 </label>
@@ -212,6 +216,7 @@ class OrderPage extends Component {
                   <div>
                     <p class="highlight">Bitcoin Wallet Address </p>
                   </div>
+
                   <InputGroup className="input-group-merge input-group-alternative">
                     <Input
                       placeholder={t("sender-bitcoin-address")}
@@ -247,6 +252,7 @@ class OrderPage extends Component {
                       Pls, transfer 0.01 BTC to Bloodlink Bitcoin wallet address
                       and update bitcoin transaction number as below:
                     </h2>
+
                     <label>Bitcoin transaction number</label>
                     <FormGroup
                       className={classnames({
@@ -279,6 +285,13 @@ class OrderPage extends Component {
                       </InputGroup>
                     </FormGroup>
                     <div>
+                      <div>
+                        <h2>Bloodlink BTC Address</h2>
+                        <img
+                          src={require("../../assets/img/btc_wallet_address.jpeg")}
+                          alt="Bloodlink BTC Wallet Address"
+                        />
+                      </div>
                       <Button
                         className="mt-4"
                         color="info"
@@ -292,6 +305,13 @@ class OrderPage extends Component {
                   </>
                 ) : (
                   <div>
+                    <div>
+                      <label>Bloodlink BTC Address</label>
+                      <img
+                        src={require("../../assets/img/btc_wallet_address.jpeg")}
+                        alt="Bloodlink BTC Wallet Address"
+                      />
+                    </div>
                     <Button
                       className="mt-4"
                       color="info"
