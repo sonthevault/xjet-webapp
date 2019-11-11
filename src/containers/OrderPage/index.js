@@ -28,7 +28,7 @@ class OrderPageContainer extends Component {
         initialValues={{
           email: user.email || "",
           xjetUserId: "",
-          senderUsdtAddress: "",
+          senderBTCAddress: "",
           amount: null,
         }}
         validateOnChange={false}
@@ -48,8 +48,8 @@ class OrderPageContainer extends Component {
             errors.xjetUserId = "Required";
           }
 
-          if (!values.senderUsdtAddress) {
-            errors.senderUsdtAddress = "Required";
+          if (!values.senderBTCAddress) {
+            errors.senderBTCAddress = "Required";
           }
 
           if (!values.amount) {

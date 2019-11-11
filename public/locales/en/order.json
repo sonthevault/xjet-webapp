@@ -12,7 +12,8 @@
     "toc-2": "Privacy Policy",
     "create-account": "Create account",
     "sign-up-label": "Sign up with credentials",
-    "user-id": "Enter the User ID",
-    "amount": "Enter MEDB amount",
-    "sender-usdt-address": "Enter the Sender USDT Address"
+    "user-id": "XJET.IO User ID",
+    "amount": "MEDB amount",
+    "sender-usdt-address": "Enter the Sender USDT Address",
+    "sender-bitcoin-address": "BTC Wallet Address"
 }

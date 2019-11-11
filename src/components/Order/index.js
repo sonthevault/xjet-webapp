@@ -27,7 +27,7 @@ class OrderPage extends Component {
   state = {};
 
   componentDidMount = () => {
-    const { formik, t, status, message } = this.props;
+    this.convertMedbToBTC();
   };
 
   onKeyDown = e => {
@@ -37,17 +37,43 @@ class OrderPage extends Component {
     }
   };
 
+  convertMedbToBTC = (amount) => {
+    if (!amount || isNaN(amount)) {
+      this.setState({
+        btcAmount: 0
+      })
+      return;
+    }
+
+    const medbAmount = parseInt(amount);
+    const btcAmount = parseFloat(Math.round((medbAmount / 10000 * 0.01) * 100) / 100).toFixed(2)
+    this.setState({btcAmount})
+  }
+
+  addCommas = (nStr) => {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
+
   render() {
     const { formik, t, status, message } = this.props;
 
     const {
       isSubmitting,
-      touched,
       errors,
       submitForm,
       values,
       setFieldValue
     } = formik;
+
+    const { btcAmount } = this.state;
 
     console.log("Formik-errors", errors);
 
@@ -62,18 +88,9 @@ class OrderPage extends Component {
             <CardBody>
               {message && <Alert color={status}>{message}</Alert>}
               {/* ======================== Start Personal Details PART ==========================*/}
-              <h2>Step 1</h2>
-              <p class="instruction">
-                Register at XJET.io and submit ID card photo for KYC
-              </p>
-
-              <br />
-
-              <h2>Step 2</h2>
-              <p class="instruction">Moving to below order link and fill up</p>
-
+              <h2>1. User Info</h2>
               <Form role="form">
-                <label>Email registered at XJET.io</label>
+                <label>1. Email</label>
                 <FormGroup
                   className={classnames({
                     focused: this.state.focusedEmail
@@ -93,7 +110,7 @@ class OrderPage extends Component {
                   </InputGroup>
                 </FormGroup>
 
-                <label>User ID at XJET.io</label>
+                <label>2. User ID at XJET.IO</label>
                 <FormGroup
                   className={classnames({
                     focused: this.state.focusedUserId
@@ -125,89 +142,96 @@ class OrderPage extends Component {
                   </InputGroup>
                 </FormGroup>
 
-                <label>Amount purchase (Need calculator)</label>
-                <FormGroup
-                  className={classnames({
-                    focused: this.state.focusedAmount
-                  })}
-                >
-                  <div>
-                    <p class="highlight">10,000 MEDB = 100USDT = 10,000 JPY</p>
-                  </div>
-                  <InputGroup className="input-group-merge input-group-alternative">
-                    <Input
-                      placeholder={t("amount")}
-                      type="text"
-                      name={"amount"}
-                      value={values["amount"]}
-                      onChange={e => {
-                        setFieldValue("amount", e.target.value);
-                      }}
-                      onFocus={() => this.setState({ focusedAmount: true })}
-                      onBlur={() =>
-                        this.setState({
-                          focusedAmount: false
-                        })
-                      }
-                      invalid={errors.amount ? true : false}
-                      disabled={isSubmitting}
-                      onKeyDown={this.onKeyDown}
-                    />
+                <h2>2. Token Order Info</h2>
+                <label>
+                  How Many ‘MEDB’ Token Want To Buy? Example: 10,000 MEDB =
+                  0.01BTC = 10,000 JPY
+                </label>
+                <Row>
+                  <Col>
+                    <FormGroup
+                      className={classnames({
+                        focused: this.state.focusedAmount
+                      })}
+                    >
+                      <InputGroup className="input-group-merge input-group-alternative">
+                        <Input
+                          placeholder={t("amount")}
+                          type="text"
+                          name={"amount"}
+                          value={values["amount"]}
+                          onChange={e => {
+                            setFieldValue("amount", e.target.value);
+                            this.convertMedbToBTC(e.target.value);
+                          }}
+                          onFocus={() => this.setState({ focusedAmount: true })}
+                          onBlur={() =>
+                            this.setState({
+                              focusedAmount: false
+                            })
+                          }
+                          invalid={errors.amount ? true : false}
+                          disabled={isSubmitting}
+                          onKeyDown={this.onKeyDown}
+                        />
 
-                    {errors.amount && (
-                      <FormFeedback>{errors.amount}</FormFeedback>
-                    )}
-                  </InputGroup>
-                </FormGroup>
-
-                <label>Sender USDT Address</label>
-                <FormGroup
-                  className={classnames({
-                    focused: this.state.focusedSenderUsdtAddress
-                  })}
-                >
-                  <div>
-                    <p class="highlight">
-                      * Address transfer USDT: 0000000000000{" "}
-                    </p>
-                    <p class="highlight">
-                      After we receive USDT from the sender address, we will
-                      distribute reserved 'MEDB' token to you after public token
-                      sales.
-                    </p>
-                  </div>
-                  <InputGroup className="input-group-merge input-group-alternative">
-                    <Input
-                      placeholder={t("sender-usdt-address")}
-                      type="text"
-                      name={"senderUsdtAddress"}
-                      value={values["senderUsdtAddress"]}
-                      onChange={e => {
-                        setFieldValue("senderUsdtAddress", e.target.value);
-                      }}
-                      onFocus={() =>
-                        this.setState({ focusedSenderUsdtAddress: true })
-                      }
-                      onBlur={() =>
-                        this.setState({
-                          focusedSenderUsdtAddress: false
-                        })
-                      }
-                      invalid={errors.senderUsdtAddress ? true : false}
-                      disabled={isSubmitting}
-                      onKeyDown={this.onKeyDown}
-                    />
-
-                    {errors.senderUsdtAddress && (
-                      <FormFeedback>{errors.senderUsdtAddress}</FormFeedback>
-                    )}
-                  </InputGroup>
-                </FormGroup>
+                        {errors.amount && (
+                          <FormFeedback>{errors.amount}</FormFeedback>
+                        )}
+                      </InputGroup>
+                    </FormGroup>
+                  </Col>
+                  <Col>
+                        <span class="align-middle">MEDB = <span>{this.addCommas(btcAmount)}BTC</span></span>
+                  </Col>
+                </Row>
 
                 <br />
-                <h2>Step 3</h2>
-                <p class="instruction">Transfer BTC to below wallet address</p>
-                <p class="highlight">* Please check with Jaeyoung</p>
+                <h2>3. User’s Bitcoin Wallet Address</h2>
+
+                <label>
+                  Pls, fill up your bitcoin wallet address below input field.
+                </label>
+                <label>
+                  Once we receive bitcoin amount from your bitcoin address will
+                  update purchase status
+                </label>
+                <FormGroup
+                  className={classnames({
+                    focused: this.state.focusedSenderBTCAddress
+                  })}
+                >
+                  <div>
+                    <p class="highlight">Bitcoin Wallet Address </p>
+                  </div>
+                  <InputGroup className="input-group-merge input-group-alternative">
+                    <Input
+                      placeholder={t("sender-bitcoin-address")}
+                      type="text"
+                      name={"senderBTCAddress"}
+                      value={values["senderBTCAddress"]}
+                      onChange={e => {
+                        setFieldValue("senderBTCAddress", e.target.value);
+                      }}
+                      onFocus={() =>
+                        this.setState({ focusedSenderBTCAddress: true })
+                      }
+                      onBlur={() =>
+                        this.setState({
+                          focusedSenderBTCAddress: false
+                        })
+                      }
+                      invalid={errors.senderBTCAddress ? true : false}
+                      disabled={isSubmitting}
+                      onKeyDown={this.onKeyDown}
+                    />
+
+                    {errors.senderBTCAddress && (
+                      <FormFeedback>{errors.senderBTCAddress}</FormFeedback>
+                    )}
+                  </InputGroup>
+                </FormGroup>
+
                 <br />
                 <div>
                   <Button
@@ -217,7 +241,7 @@ class OrderPage extends Component {
                     onClick={submitForm}
                     disabled={isSubmitting}
                   >
-                    Submit
+                    Order
                   </Button>
                 </div>
               </Form>
