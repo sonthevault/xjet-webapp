@@ -24,7 +24,7 @@ class DashBoardContainer extends Component {
   };
 
   onSupportClick = () => {
-    this.openInNewTab("https://xjet.zendesk.com/");
+    this.openInNewTab("https://xjet.zendesk.com/hc/en-us/requests/new");
   }
 
   onUserProfileClick = () => {

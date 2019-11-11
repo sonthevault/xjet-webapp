@@ -13,7 +13,7 @@ class SupportPageContainer extends Component {
   }
 
   componentDidMount() {
-    this.openInNewTab("https://xjet.zendesk.com/");
+    this.openInNewTab("https://xjet.zendesk.com/hc/en-us/requests/new");
   }
 
   componentWillUnmount() {
