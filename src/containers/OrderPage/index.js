@@ -49,8 +49,6 @@ class OrderPageContainer extends Component {
     const { t, user } = this.props;
     const { status, message, orderData } = this.state;
 
-    console.log("render-orderData", orderData);
-
     return (
       <Formik
         initialValues={{
@@ -110,6 +108,8 @@ class OrderPageContainer extends Component {
                     message: "Your order has been submitted successfully."
                   });
                   window.scrollTo(0, 0);
+
+                  window.location.reload();
                   break;
                 case 400:
                 case 401:

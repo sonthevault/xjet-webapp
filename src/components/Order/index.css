@@ -71,3 +71,8 @@
 .instruction {
   font-weight: 500;
 }
+
+.btcAmount {
+  font-weight: bold;
+  font-size: 20px;
+}

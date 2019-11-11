@@ -47,7 +47,7 @@ class OrderPage extends Component {
 
     const medbAmount = parseInt(amount);
     const btcAmount = parseFloat(
-      Math.round((medbAmount / 10000) * 0.01 * 100) / 100
+      Math.round((medbAmount) * 0.01 * 100) / 100
     ).toFixed(2);
     this.setState({ btcAmount });
   };
@@ -195,7 +195,7 @@ class OrderPage extends Component {
                   </Col>
                   <Col>
                     <span class="align-middle">
-                      MEDB = <span>{this.addCommas(btcAmount)}BTC</span>
+                      {`x 10,000 MEDB = `}<span class="btcAmount">{`${this.addCommas(btcAmount)} BTC`}</span>
                     </span>
                   </Col>
                 </Row>
@@ -306,7 +306,7 @@ class OrderPage extends Component {
                 ) : (
                   <div>
                     <div>
-                      <label>Bloodlink BTC Address</label>
+                      <h2>Bloodlink BTC Address</h2>
                       <img
                         src={require("../../assets/img/btc_wallet_address.jpeg")}
                         alt="Bloodlink BTC Wallet Address"
