@@ -20,6 +20,7 @@ import {
 } from "reactstrap";
 import AuthHeader from "components/Headers/AuthHeader.jsx";
 import ReCAPTCHA from "react-google-recaptcha";
+import styles from "./index.module.css";
 
 class LoginPage extends Component {
   state = {};
@@ -56,7 +57,30 @@ class LoginPage extends Component {
       <>
         <AuthHeader title="XJET.IOn" lead="Admin dasboard" />
         <Container className="mt--8 pb-5">
+          <br />
           <Row className="justify-content-center">
+            <Col lg="auto" className={styles.leftCol}>
+              <h1 className={styles.leftHeadText}>
+                Bloodlink project 'MEDB' Token Purchase Process
+              </h1>
+              <div>
+                <div>Step 1.</div>
+                <div>
+                  Register account at XJET.io and submit ID card photo for KYC
+                </div>
+              </div>
+              <div>
+                <div>Step 2.</div>
+                <div>
+                  Register account token order page again and fill up the token
+                  order form
+                </div>
+              </div>
+              <div>
+                <div>Step 3.</div>
+                <div>Transfer BTC to Bloodlink BTC wallet address</div>
+              </div>
+            </Col>
             <Col lg="5" md="7">
               {message && <Alert color={status}>{message}</Alert>}
               <Card className="bg-secondary border-0 mb-0">
