@@ -7,9 +7,15 @@ import { logout } from "redux/actions";
 
 class DashBoardContainer extends Component {
   componentDidMount() {
-    if (!this.props.isAuthenticated) {
+    if (!this.props.isAuthenticated || !this.props.user) {
       this.props.history.push("/");
     }
+
+    const lastPath = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+    if (lastPath === "user") {
+      this.props.history.push("/user/introduction");
+    }
+
   }
 
   openInNewTab  = (url) => {
@@ -38,8 +44,16 @@ class DashBoardContainer extends Component {
     this.props.history.push("/user/profile");
   }
 
+  onProjectIntroductionClick = () => {
+    this.props.history.push("/user/introduction");
+  }
+
   render() {
     const { user } = this.props;
+    
+    if (!user) {
+      return null;
+    }
     return (
       <DashBoard
         {...this.props}
@@ -47,6 +61,7 @@ class DashBoardContainer extends Component {
         onSupportClick={this.onSupportClick}
         onTokenClick={this.onTokenClick}
         onUserProfileClick={this.onUserProfileClick}
+        onProjectIntroductionClick={this.onProjectIntroductionClick}
         user={user}
         onSettingItemClick={this.onSettingItemClick}
       />
