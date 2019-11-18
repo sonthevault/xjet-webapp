@@ -94,6 +94,12 @@ class AdminNavbar extends React.Component {
                       <h6 className="text-overflow m-0">Welcome!</h6>
                     </DropdownItem>
                     <DropdownItem
+                      onClick={this.props.onProjectIntroductionClick}
+                    >
+                      <i className="ni ni-settings-gear-65" />
+                      <span>Project Introduction</span>
+                    </DropdownItem>
+                    <DropdownItem
                       onClick={this.props.onUserProfileClick}
                     >
                       <i className="ni ni-settings-gear-65" />
