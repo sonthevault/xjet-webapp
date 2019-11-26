@@ -65,6 +65,10 @@ API.confirmEmail = token => {
   return API.instance.get(`/auth/confirmation/${token}`);
 };
 
+API.forgotPassword = () => {
+  return API.instance.post(`/auth/forgot-password/`)
+}
+
 API.upload = body => {
   const instance = axios.create({
     baseURL: BASE_URL,

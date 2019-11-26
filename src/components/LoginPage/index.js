@@ -184,6 +184,11 @@ class LoginPage extends Component {
                           <u>{t("create-new-account")}</u>
                         </Button>
                       </Col>
+                      <Col>
+                        <Button color="link" onClick={onClickForgotPassword}>
+                          <u>{t("forgot-password")}</u>
+                        </Button>
+                      </Col>
                     </Row>
                   </Form>
                 </CardBody>

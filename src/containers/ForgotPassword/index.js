@@ -71,7 +71,7 @@ class ForgotPasswordContainer extends Component {
               setSubmitting(false);
 
               switch (response.status) {
-                case 201:
+                case 200:
                   this.setState({
                     status: "success",
                     message: path(["data", "message"], response) || t("success-message")
@@ -80,7 +80,7 @@ class ForgotPasswordContainer extends Component {
                 case 400:
                   this.setState({
                     status: "danger",
-                    message: path(["data", "message"], response) || "Invalid password"
+                    message: path(["data", "message"], response) || "Something went wrong"
                   });
                   break;
                 default:
