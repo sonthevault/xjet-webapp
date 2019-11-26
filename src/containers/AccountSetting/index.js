@@ -39,6 +39,7 @@ class AccountSettingContainer extends Component {
           email: user.email || "",
           phone: user.phone || "",
           createdAt: user.createdAt || "",
+          referralCode: user.referralCode || ""
         }}
         validateOnChange={false}
         validateOnBlur={false}

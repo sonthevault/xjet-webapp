@@ -143,6 +143,24 @@ class AccountSetting extends Component {
                     </FormGroup>
                   </Col>
                 </Row>
+
+                {/*  Field contact number */}
+                <Row>
+                  <Col md="12">
+                    <label>Referral Code</label>
+                    <FormGroup>
+                      <InputGroup
+                      >
+                        <Input
+                          type="text"
+                          name="referralCode"
+                          value={values["referralCode"]}
+                          disabled
+                        />
+                      </InputGroup>
+                    </FormGroup>
+                  </Col>
+                </Row>
               </Form>
             </CardBody>
           </Card>
