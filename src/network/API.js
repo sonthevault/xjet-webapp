@@ -65,8 +65,8 @@ API.confirmEmail = token => {
   return API.instance.get(`/auth/confirmation/${token}`);
 };
 
-API.forgotPassword = () => {
-  return API.instance.post(`/auth/forgot-password/`)
+API.forgotPassword = (body) => {
+  return API.instance.post(`/auth/forgot-password/`, body)
 }
 
 API.resetPassword = (body) => {
