@@ -69,6 +69,10 @@ API.forgotPassword = () => {
   return API.instance.post(`/auth/forgot-password/`)
 }
 
+API.resetPassword = (body) => {
+  return API.instance.post(`/auth/reset-password/`, body)
+}
+
 API.upload = body => {
   const instance = axios.create({
     baseURL: BASE_URL,

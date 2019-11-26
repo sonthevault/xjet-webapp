@@ -45,14 +45,15 @@ class ResetPasswordContainer extends Component {
 
   render() {
     const { t } = this.props;
-    const { status, message } = this.state;
+    const { status, message, token } = this.state;
 
     return (
       <Formik
-        initialValues={{ password: "", confirm_password: "" }}
+        initialValues={{ password: "", confirm_password: "", token }}
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit
+        enableReinitialize
         validate={values => {
           let errors = {};
 
@@ -74,7 +75,7 @@ class ResetPasswordContainer extends Component {
         onSubmit={(values, { setSubmitting }) => {
           this.setState({ message: "" });
 
-          API.resetPassword(this.state.token, values)
+          API.resetPassword(values)
             .then(response => {
               setSubmitting(false);
 
