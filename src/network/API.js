@@ -73,6 +73,10 @@ API.resetPassword = (body) => {
   return API.instance.post(`/auth/reset-password/`, body)
 }
 
+API.getReferrals = (query) => {
+  return API.instance.get("referrals", query)
+}
+
 API.upload = body => {
   const instance = axios.create({
     baseURL: BASE_URL,
