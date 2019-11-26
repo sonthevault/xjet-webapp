@@ -4,6 +4,7 @@ import OrderPage from "./containers/OrderPage";
 import SupportPage from "./containers/SupportPage";
 import LogoutPage from "./containers/LogoutPage";
 import IntroductionPage from "./containers/IntroductionPage";
+import Referral from "./containers/Referral";
 
 const routes = [
   {
@@ -32,6 +33,13 @@ const routes = [
     name: "Customer Support",
     icon: "fa fa-question-circle",
     component: SupportPage,
+    layout: "/user"
+  },
+  {
+    path: "/referral",
+    name: "Referral",
+    icon: "fa fa-question-circle",
+    component: Referral,
     layout: "/user"
   },
   {
