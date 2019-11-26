@@ -40,8 +40,8 @@ class OrderPage extends Component {
 
     const medbAmount = parseInt(amount);
     const btcAmount = parseFloat(
-      Math.round((medbAmount) * 0.012 * 100) / 100
-    ).toFixed(2);
+      Math.round((medbAmount) * 0.018 * 1000) / 1000
+    ).toFixed(3);
     return btcAmount;
   };
 
@@ -150,12 +150,12 @@ class OrderPage extends Component {
                 <h2>2. Token Order Info</h2>
                 <label>
                   How Many ‘MEDB’ Token Want To Buy? Example: 10,000 MEDB =
-                  0.012BTC = 11034.24 JPY
+                  0.018BTC = 14,000 JPY
                 </label>
                 <div>
                   <p class="highlight-red">
                     Minimum number of MEDB token purchase is 20,000 MEDB
-                    (=0.024BTC)
+                    (=0.036BTC)
                   </p>
                 </div>
                 <Row>
