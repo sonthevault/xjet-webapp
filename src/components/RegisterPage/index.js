@@ -236,6 +236,28 @@ class RegisterPage extends Component {
                       </InputGroup>
                     </FormGroup>
 
+                    <label>Referral Code</label>
+                    <FormGroup
+                      className={classnames({
+                        focused: this.state.focusedRef
+                      })}
+                    >
+                      <InputGroup className="input-group-merge input-group-alternative mb-3">
+                        <Input
+                          type="text"
+                          name={"ref"}
+                          value={values["ref"]}
+                          onFocus={() => this.setState({ focusedRef: true })}
+                          onBlur={() => this.setState({ focusedRef: false })}
+                          invalid={errors.ref ? true : false}
+                          disabled
+                        />
+                        {errors.ref && (
+                          <FormFeedback>{errors.ref}</FormFeedback>
+                        )}
+                      </InputGroup>
+                    </FormGroup>
+
                     <Row>
                       <Col>
                         <Button

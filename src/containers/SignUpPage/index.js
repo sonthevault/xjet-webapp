@@ -9,13 +9,17 @@ import { register } from "../../redux/actions";
 import RegisterPage from "../../components/RegisterPage";
 import API from "../../network/API";
 import { path, pathOr } from "ramda";
-
+import qs from "query-string";
 class SignUpPageContainer extends Component {
-  state = {};
+  state = {ref: ''};
 
   componentDidMount() {
     document.body.classList.add("bg-default");
-    this.props.history.push("/signup");
+
+    const query = qs.parse(this.props.location.search);
+    if (query.ref) {
+      this.setState({ref: query.ref})
+    }
   }
 
   componentWillUnmount() {
@@ -28,7 +32,7 @@ class SignUpPageContainer extends Component {
 
   render() {
     const { t } = this.props;
-    const { status, message } = this.state;
+    const { status, message, ref } = this.state;
 
     return (
       <Formik
@@ -38,10 +42,12 @@ class SignUpPageContainer extends Component {
           confirmationPassword: "",
           username: "",
           phone: "",
+          ref: ref || "",
         }}
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit
+        enableReinitialize
         validate={values => {
           let errors = {};
           if (!values.email) {
@@ -80,6 +86,7 @@ class SignUpPageContainer extends Component {
             username: values["username"],
             phone: values["phone"],
             password: values["password"],
+            ref: values["ref"]
           };
 
           this.setState({ message: "" });
