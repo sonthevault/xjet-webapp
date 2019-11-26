@@ -74,7 +74,7 @@ API.resetPassword = (body) => {
 }
 
 API.getReferrals = (query) => {
-  return API.instance.get("referrals", query)
+  return API.instance.get("referrals", {params: query})
 }
 
 API.upload = body => {

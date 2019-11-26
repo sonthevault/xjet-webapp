@@ -100,7 +100,7 @@ class Referral extends Component {
   loadReferral = (page = 1, sizePerPage = 10) => {
     const query = {
       page: page,
-      size: sizePerPage,
+      perPage: sizePerPage,
     };
 
     const { user } = this.props;
