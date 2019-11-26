@@ -29,17 +29,17 @@ const routes = [
     layout: "/user"
   },
   {
+    path: "/referral",
+    name: "Referrals",
+    icon: "fa fa-users",
+    component: Referral,
+    layout: "/user"
+  },
+  {
     path: "/support",
     name: "Customer Support",
     icon: "fa fa-question-circle",
     component: SupportPage,
-    layout: "/user"
-  },
-  {
-    path: "/referral",
-    name: "Referral",
-    icon: "fa fa-question-circle",
-    component: Referral,
     layout: "/user"
   },
   {
