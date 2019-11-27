@@ -5,6 +5,7 @@ import SupportPage from "./containers/SupportPage";
 import LogoutPage from "./containers/LogoutPage";
 import IntroductionPage from "./containers/IntroductionPage";
 import Referral from "./containers/Referral";
+import Airdrop from "./containers/Airdrop";
 
 const routes = [
   {
@@ -33,6 +34,13 @@ const routes = [
     name: "Referrals",
     icon: "fa fa-users",
     component: Referral,
+    layout: "/user"
+  },
+  {
+    path: "/airdrop",
+    name: "Airdrops",
+    icon: "fa fa-users",
+    component: Airdrop,
     layout: "/user"
   },
   {
