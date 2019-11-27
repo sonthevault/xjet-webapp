@@ -250,7 +250,7 @@ class RegisterPage extends Component {
                           onFocus={() => this.setState({ focusedRef: true })}
                           onBlur={() => this.setState({ focusedRef: false })}
                           invalid={errors.ref ? true : false}
-                          disabled
+                          disabled={values["ref"]}
                         />
                         {errors.ref && (
                           <FormFeedback>{errors.ref}</FormFeedback>
