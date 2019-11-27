@@ -39,7 +39,7 @@ const routes = [
   {
     path: "/airdrop",
     name: "Airdrops",
-    icon: "fa fa-users",
+    icon: "fa fa-gift",
     component: Airdrop,
     layout: "/user"
   },
