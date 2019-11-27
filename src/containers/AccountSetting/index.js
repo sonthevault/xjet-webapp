@@ -41,7 +41,7 @@ class AccountSettingContainer extends Component {
           phone: user.phone || "",
           createdAt: user.createdAt || "",
           referralCode: user.referralCode || "",
-          referralLink: `${WEB_URL}?ref=${user.referralCode}`
+          referralLink: `${WEB_URL}/signup?ref=${user.referralCode}`
         }}
         enableReinitialize
         validateOnChange={false}
