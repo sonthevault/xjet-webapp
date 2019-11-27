@@ -9,6 +9,7 @@ import { updateUser } from "../../redux/actions";
 
 import AccountSetting from "../../components/AccountSetting";
 
+const WEB_URL = process.env.REACT_APP_WEB_URL
 class AccountSettingContainer extends Component {
   state = {
     status: "",
@@ -39,8 +40,10 @@ class AccountSettingContainer extends Component {
           email: user.email || "",
           phone: user.phone || "",
           createdAt: user.createdAt || "",
-          referralCode: user.referralCode || ""
+          referralCode: user.referralCode || "",
+          referralLink: `${WEB_URL}?ref=${user.referralCode}`
         }}
+        enableReinitialize
         validateOnChange={false}
         validateOnBlur={false}
         validateOnSubmit

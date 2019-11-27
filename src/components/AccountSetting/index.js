@@ -11,6 +11,7 @@ import {
   Form,
   Input,
   InputGroup,
+  InputGroupAddon,
   Container,
   Row,
   Col,
@@ -19,6 +20,7 @@ import {
 } from "reactstrap";
 // core components
 import SimpleHeader from "components/Headers/SimpleHeader.jsx";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 class AccountSetting extends Component {
   state = {};
@@ -29,6 +31,14 @@ class AccountSetting extends Component {
       submitForm();
     }
   };
+
+  copyRefLink = () => {
+
+  }
+
+  copyRefCode = () => {
+    document.execCommand('copy');
+  }
 
   render() {
     const { formik, t, status, message } = this.props;
@@ -144,7 +154,7 @@ class AccountSetting extends Component {
                   </Col>
                 </Row>
 
-                {/*  Field contact number */}
+                {/*  Field ref code */}
                 <Row>
                   <Col md="12">
                     <label>Referral Code</label>
@@ -157,6 +167,34 @@ class AccountSetting extends Component {
                           value={values["referralCode"]}
                           disabled
                         />
+                        <InputGroupAddon addonType="append">
+                          <CopyToClipboard text={values["referralCode"]} onCopy={() => this.setState({copyValue: values["referralCode"]})}>
+                            {this.state.copyValue !== values["referralCode"] ? <Button color="secondary">Copy</Button> : <Button color="success">Copied</Button>}
+                          </CopyToClipboard>
+                        </InputGroupAddon>
+                      </InputGroup>
+                    </FormGroup>
+                  </Col>
+                </Row>
+
+                {/*  Field ref link */}
+                <Row>
+                  <Col md="12">
+                    <label>Referral Link</label>
+                    <FormGroup>
+                      <InputGroup
+                      >
+                        <Input
+                          type="text"
+                          name="referralLink"
+                          value={values["referralLink"]}
+                          disabled
+                        />
+                      <InputGroupAddon addonType="append">
+                        <CopyToClipboard text={values["referralLink"]} onCopy={() => this.setState({copyValue: values["referralLink"]})}>
+                          {this.state.copyValue !== values["referralLink"] ? <Button color="secondary">Copy</Button> : <Button color="success">Copied</Button>}           
+                        </CopyToClipboard>
+                      </InputGroupAddon>
                       </InputGroup>
                     </FormGroup>
                   </Col>
