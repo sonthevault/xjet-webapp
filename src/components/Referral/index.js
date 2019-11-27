@@ -21,6 +21,7 @@ import SimpleHeader from "components/Headers/SimpleHeader.jsx";
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import { path, pathOr } from "ramda";
+import { format } from "date-fns"
 
 import API from "../../network/API";
 import { LoadingIndication } from "components/Indication/LoadingIndication"
@@ -123,6 +124,14 @@ class Referral extends Component {
     }
   };
 
+  referralDateFormatter = (cell, row) => {
+    return (
+      <>
+        {format(new Date(cell), 'DD-MM-YYYY hh:mm')}
+      </>
+    );
+  };
+
   render() {
     const { referrals = [], message, status, count, sizePerPage, page, loading } = this.state;
     return (
@@ -151,12 +160,11 @@ class Referral extends Component {
                     {
                       dataField: "createdAt",
                       text: "Referral Date",
-                      searchable: true,
+                      formatter: this.referralDateFormatter
                     },
                     {
                       dataField: "email",
-                      text: "Email",
-                      searchable: true
+                      text: "Email"
                     },
                     {
                       dataField: "status",
