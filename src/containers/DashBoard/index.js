@@ -48,6 +48,14 @@ class DashBoardContainer extends Component {
     this.props.history.push("/user/introduction");
   }
 
+  onReferralClick = () => {
+    this.props.history.push("/user/referral");
+  }
+
+  onAirdropClick = () => {
+    this.props.history.push("/user/airdrop");
+  } 
+
   render() {
     const { user } = this.props;
     
@@ -61,6 +69,8 @@ class DashBoardContainer extends Component {
         onSupportClick={this.onSupportClick}
         onTokenClick={this.onTokenClick}
         onUserProfileClick={this.onUserProfileClick}
+        onReferralClick={this.onReferralClick}
+        onAirdropClick={this.onAirdropClick}
         onProjectIntroductionClick={this.onProjectIntroductionClick}
         user={user}
         onSettingItemClick={this.onSettingItemClick}

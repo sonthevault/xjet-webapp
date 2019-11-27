@@ -96,20 +96,32 @@ class AdminNavbar extends React.Component {
                     <DropdownItem
                       onClick={this.props.onProjectIntroductionClick}
                     >
-                      <i className="ni ni-settings-gear-65" />
+                      <i className="fa fa-info-circle" />
                       <span>Project Introduction</span>
                     </DropdownItem>
                     <DropdownItem
                       onClick={this.props.onUserProfileClick}
                     >
-                      <i className="ni ni-settings-gear-65" />
+                      <i className="fa fa-user" />
                       <span>User Profile</span>
                     </DropdownItem>
                     <DropdownItem
                       onClick={this.props.onTokenClick}
                     >
-                      <i className="ni ni-calendar-grid-58" />
+                      <i className="fa fa-shopping-cart" />
                       <span>Token</span>
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={this.props.onReferralClick}
+                    >
+                      <i className="fa fa-users" />
+                      <span>Referral</span>
+                    </DropdownItem>
+                    <DropdownItem
+                      onClick={this.props.onAirdropClick}
+                    >
+                      <i className="fa fa-gift" />
+                      <span>Airdrop</span>
                     </DropdownItem>
                     <DropdownItem
                       onClick={this.props.onSupportClick}
