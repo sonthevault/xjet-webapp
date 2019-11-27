@@ -77,6 +77,10 @@ API.getReferrals = (query) => {
   return API.instance.get("referrals", {params: query})
 }
 
+API.getAirdrops = (query) => {
+  return API.instance.get("airdrops", {params: query})
+}
+
 API.upload = body => {
   const instance = axios.create({
     baseURL: BASE_URL,
